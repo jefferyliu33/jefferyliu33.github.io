@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- NOINDEX: keeps the site out of search engines. Delete the next line when ready to be indexed. -->
+  <meta name="robots" content="noindex">
+  <title>Jeffery Liu | Line Follower Robot</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- Colour system (from the design note) ---------- */
+    :root {
+      --bg:        #0F1216;
+      --panel:     #171B21;
+      --hairline:  #2A2F37;
+      --text:      #E8EAED;
+      --muted:     #9BA1A9;
+      --navy:      #1F3864;
+      --accent:    #E0A24A;
+      --maxw: 1200px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Hanken Grotesk", sans-serif;
+      font-weight: 400;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ---------- Top bar (shared on every page) ---------- */
+    .topbar { border-bottom: 1px solid var(--hairline); }
+    .topbar-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 22px 32px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .wordmark {
+      font-family: "Archivo", sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.02em;
+    }
+    .nav {
+      display: flex;
+      gap: 28px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .nav a:hover { color: var(--text); }
+    .nav a.active { color: var(--text); }
+
+    /* ---------- Detail page ---------- */
+    .detail {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 32px 90px;
+    }
+
+    .detail-category {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 14px;
+    }
+    .detail-title {
+      font-family: "Archivo", sans-serif;
+      font-weight: 700;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin: 0 0 32px;
+    }
+
+    /* detail-page media: fill the column, whole image shown, capped at ~80vh,
+       left-aligned to the column edge. No full-bleed, no box. */
+    figure { margin: 0 0 40px; }
+    .lead-figure { margin: 0 0 40px; }
+    .lead-img,
+    .seq-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 80vh;
+      object-fit: contain;
+      margin: 0;
+      background: none;
+      border: 0;
+    }
+    /* lead video, same sizing rules as the images */
+    .lead-video {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 80vh;
+      margin: 0;
+    }
+    figcaption {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      line-height: 1.45;
+      color: var(--text);
+      max-width: 100%;
+      margin: 10px 0 0;
+    }
+
+    /* standfirst */
+    .standfirst {
+      font-size: clamp(18px, 2vw, 21px);
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 100%;
+      margin: 0 0 44px;
+    }
+
+    /* section label, mono */
+    .section-label {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--hairline);
+      max-width: 100%;
+    }
+
+    /* section list */
+    .did-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 44px;
+      max-width: 100%;
+    }
+    .did-list li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 16px;
+      font-size: 16.5px;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .did-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 11px;
+      width: 7px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    /* bold result line, skim anchor */
+    .result-line {
+      font-family: "Archivo", sans-serif;
+      font-weight: 600;
+      font-size: clamp(19px, 2.2vw, 23px);
+      line-height: 1.35;
+      color: var(--accent);
+      max-width: 100%;
+      margin: 0 0 44px;
+      padding: 22px 0 22px 22px;
+      border-left: 2px solid var(--accent);
+    }
+
+    /* learned paragraph */
+    .learned {
+      font-size: 16.5px;
+      line-height: 1.6;
+      color: var(--text);
+      max-width: 100%;
+      margin: 0 0 60px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 56px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .back-link:hover { color: var(--accent); }
+  </style>
+
+  <link rel="stylesheet" href="motion.css">
+  <script src="motion.js" defer></script>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="wordmark" href="index.html">JEFFERY LIU</a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="cv.html">CV</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="detail">
+
+    <p class="detail-category">Mechanical Design</p>
+    <h1 class="detail-title">Line Follower Robot</h1>
+
+    <!-- Standfirst -->
+    <p class="standfirst">ENMT221 Mechatronics Design, 2025.</p>
+
+    <!-- Lead image: the robot as raced -->
+    <figure class="lead-figure">
+      <img class="lead-img" src="images/linefollower1.png" alt="The finished line follower robot as raced">
+      <figcaption>The robot as raced.</figcaption>
+    </figure>
+
+    <!-- Intro paragraph -->
+    <p class="learned">A five-person team designed and built the robot from scratch: PCB, sensors, control code and the full mechanical platform. I led the mechanical design and build, the chassis, drivetrain, braking and the test setup, and was closely involved in the on-track tuning.</p>
+
+    <!-- Section: The braking problem -->
+    <p class="section-label">The braking problem</p>
+    <p class="learned">The PCB's H-bridge didn't work, so the robot had no active braking. It coasted into corners and overshot, which capped usable power at about 15% duty cycle. I built a mechanical brake from tensioned rubber bands, set so the band tension matched motor power. That let the robot run full power and still hold the corners.</p>
+
+    <!-- Image: rubber-band brake -->
+    <figure>
+      <img class="seq-img" src="images/Screenshot%202026-06-29%20195452.png" alt="Rubber-band brake on the drive axle">
+      <figcaption>Rubber-band brake on the drive axle. Tension tuned to match motor power.</figcaption>
+    </figure>
+
+    <!-- Section: The build -->
+    <p class="section-label">The build</p>
+    <ul class="did-list">
+      <li>Designed and 3D-printed the PLA chassis, iterating across 20-plus layouts to cut printed mass to around 35 to 40g while keeping it stiff.</li>
+      <li>Set a 115mm track width and 55/45 weight distribution for predictable cornering.</li>
+      <li>Built a two-stage 22:1 gearbox and cast silicone tyres for grip off the corners.</li>
+      <li>Swapped the supplied axle rods for M3 shanked bolts on a dual-bearing setup to remove play and friction.</li>
+      <li>Finished the mechanical build before the electronics arrived, so race week was just placement and fine-tuning.</li>
+    </ul>
+
+    <!-- Image: exploded CAD -->
+    <figure>
+      <img class="seq-img" src="images/linefollower2.png" alt="Exploded assembly of the line follower robot, all structural parts 3D-printed in PLA">
+      <figcaption>Exploded assembly. All structural parts 3D-printed in PLA.</figcaption>
+    </figure>
+
+    <!-- Image: silicone tyre moulds -->
+    <figure>
+      <img class="seq-img" src="images/Screenshot%202026-06-29%20195440.png" alt="3D-printed moulds for casting the silicone tyres">
+      <figcaption>3D-printed moulds for casting the silicone tyres.</figcaption>
+    </figure>
+
+    <!-- Section: Testing -->
+    <p class="section-label">Testing</p>
+    <p class="learned">Built a replica of the competition track in my garage so I could test between prints instead of waiting for lab time.</p>
+
+    <!-- Image: replica competition track -->
+    <figure>
+      <img class="seq-img" src="images/Screenshot%202026-06-29%20195512.png" alt="Replica competition track built at home for repeatable testing">
+      <figcaption>Replica competition track I built at home for repeatable testing.</figcaption>
+    </figure>
+
+    <!-- Result line -->
+    <p class="result-line">Placed third overall with a 6.150s lap, 0.14s off first.</p>
+
+    <!-- Learned -->
+    <p class="section-label">Learned</p>
+    <p class="learned">A dead H-bridge could have sunk the project. Instead it forced improvisation on both sides: a stripped-back motor driver to get the robot running, then the brake and the mechanical work to make it quick. The lesson stuck with me. When time is tight, a fix you can build and test beats a perfect one you can't finish.</p>
+
+    <a class="back-link" href="projects.html">&larr; Back to projects</a>
+
+  </main>
+
+</body>
+</html>

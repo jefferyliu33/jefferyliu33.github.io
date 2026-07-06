@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- NOINDEX: keeps the site out of search engines. Delete the next line when ready to be indexed. -->
+  <meta name="robots" content="noindex">
+  <title>Jeffery Liu | Projects</title>
+
+  <!-- Fonts: Archivo (headings), Hanken Grotesk (body), IBM Plex Mono (labels/specs) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- Colour system (from the design note) ---------- */
+    :root {
+      --bg:        #0F1216;  /* near-black charcoal base */
+      --panel:     #171B21;  /* raised cards */
+      --hairline:  #2A2F37;  /* borders / rules */
+      --text:      #E8EAED;  /* primary off-white */
+      --muted:     #9BA1A9;  /* secondary text */
+      --navy:      #1F3864;  /* structural brand navy (CV navy) */
+      --accent:    #E0A24A;  /* warm amber, the one personality colour */
+
+      --maxw: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body { margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Hanken Grotesk", sans-serif;
+      font-weight: 400;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ---------- Top bar ---------- */
+    .topbar {
+      border-bottom: 1px solid var(--hairline);
+    }
+    .topbar-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 22px 32px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .wordmark {
+      font-family: "Archivo", sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.02em;
+    }
+    .nav {
+      display: flex;
+      gap: 28px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .nav a:hover { color: var(--text); }
+    .nav a.active { color: var(--text); }
+
+    /* ---------- Page head ---------- */
+    .page-head {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 56px 32px 28px;
+    }
+    .page-kicker {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 14px;
+    }
+    /* amber standfirst, same treatment as the home hero kicker */
+    .page-standfirst {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      margin: 0 0 22px;
+    }
+    .page-title {
+      font-family: "Archivo", sans-serif;
+      font-weight: 700;
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1.05;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    /* thin rule under the head, technical-document texture */
+    .rule {
+      max-width: var(--maxw);
+      margin: 28px auto 0;
+      padding: 0 32px;
+    }
+    .rule hr {
+      border: 0;
+      border-top: 1px solid var(--hairline);
+      margin: 0;
+    }
+
+    /* ---------- Project grid ---------- */
+    .grid-wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 40px 32px 80px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px 28px;
+    }
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+
+    .card { display: block; }
+
+    /* fixed aspect ratio so the grid reads deliberate regardless of photo */
+    .thumb {
+      position: relative;
+      aspect-ratio: 4 / 3;
+      background: var(--panel);
+      border: 1px solid var(--hairline);
+      overflow: hidden;
+      transition: border-color 0.15s ease;
+    }
+    .card:hover .thumb { border-color: var(--accent); }
+
+    /* real thumbnail photo fills the fixed 4:3 box */
+    .thumb .thumb-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* placeholder thumbnail marker (no real photos yet) */
+    .thumb .placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      color: #4A515B;
+    }
+
+    /* status tag for in-progress projects, top-left of thumb */
+    .thumb .status {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+      color: var(--text);
+      background: rgba(15, 18, 22, 0.82);
+      border: 1px solid var(--hairline);
+      padding: 3px 8px;
+    }
+
+    /* text block under the thumbnail */
+    .card-body { padding: 14px 2px 0; }
+
+    .category {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 6px;
+    }
+    .card-title {
+      font-family: "Archivo", sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 1.2;
+      margin: 0 0 6px;
+    }
+    .card:hover .card-title { color: var(--accent); }
+
+    .caption {
+      font-size: 14.5px;
+      color: var(--muted);
+      margin: 0;
+    }
+    /* obvious placeholder styling so copy is clearly not written yet */
+    .caption.placeholder-copy {
+      font-style: italic;
+      color: #6B727B;
+    }
+  </style>
+
+  <link rel="stylesheet" href="motion.css">
+  <script src="motion.js" defer></script>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="wordmark" href="index.html">JEFFERY LIU</a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="cv.html">CV</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head">
+    <p class="page-standfirst">Things I've designed, built, broken and fixed.</p>
+    <h1 class="page-title">Projects</h1>
+  </section>
+  <div class="rule"><hr></div>
+
+  <main class="grid-wrap">
+    <div class="grid">
+
+      <!-- 1. Holmes -->
+      <a class="card" href="holmes.html">
+        <div class="thumb">
+          <img class="thumb-img" src="images/holmes1.png" alt="Mooring snapback test with a loaded line recoiling at high speed">
+        </div>
+        <div class="card-body">
+          <p class="category">Test Engineering</p>
+          <h2 class="card-title">Marine Snapback Research &amp; Design</h2>
+          <p class="caption">Investigated mooring snapback and designed a test-rig upgrade, now in build.</p>
+        </div>
+      </a>
+
+      <!-- 2. Engine -->
+      <a class="card" href="engine.html">
+        <div class="thumb">
+          <img class="thumb-img" src="images/engine2.jpg" alt="Built engine on the stand with stainless headers fitted">
+        </div>
+        <div class="card-body">
+          <p class="category">Motorsport / Automotive</p>
+          <h2 class="card-title">Turbocharged Engine Build</h2>
+          <p class="caption">Built and running, daily driven. Tune to target pending.</p>
+        </div>
+      </a>
+
+      <!-- 3. RoboCup -->
+      <a class="card" href="robocup.html">
+        <div class="thumb">
+          <img class="thumb-img" src="images/IMG_2096.jpeg" alt="The given tracked competition chassis with metal top plate, timing-belt tracks and two motors">
+          <div class="status">In progress</div>
+        </div>
+        <div class="card-body">
+          <p class="category">Robotics / Mechanical design</p>
+          <h2 class="card-title">RoboCup Collection Robot</h2>
+          <p class="caption">Team collection robot with a rotating-drum intake I proposed and prototyped.</p>
+        </div>
+      </a>
+
+      <!-- 4. Pick-and-Place CNC -->
+      <a class="card" href="cnc.html">
+        <div class="thumb">
+          <img class="thumb-img" src="images/cnc1.jpg" alt="Assembled pick-and-place CNC prototype on a workbench" style="object-fit: cover; object-position: center 40%;">
+        </div>
+        <div class="card-body">
+          <p class="category">Automation / Mechatronics Design</p>
+          <h2 class="card-title">Pick-and-Place CNC</h2>
+          <p class="caption">Five-person build from scratch. Belt-drive work, fault diagnosis, and assembly. Built for $128.85.</p>
+        </div>
+      </a>
+
+      <!-- 5. Line Follower -->
+      <a class="card" href="line-follower.html">
+        <div class="thumb">
+          <img class="thumb-img" src="images/linefollower1.png" alt="The finished line follower robot as raced">
+        </div>
+        <div class="card-body">
+          <p class="category">Mechanical Design</p>
+          <h2 class="card-title">Line Follower Robot</h2>
+          <p class="caption">Mechanical lead on a competition line-following robot. Third overall.</p>
+        </div>
+      </a>
+
+      <!-- 6. Tyre Temperature Sensor -->
+      <a class="card" href="#">
+        <div class="thumb">
+          <div class="status">In progress</div>
+          <div class="placeholder">[ thumbnail ]</div>
+        </div>
+        <div class="card-body">
+          <p class="category">FSAE / Sensing</p>
+          <h2 class="card-title">Tyre Temperature Sensor</h2>
+          <p class="caption placeholder-copy">Caption to be written.</p>
+        </div>
+      </a>
+
+    </div>
+  </main>
+
+</body>
+</html>

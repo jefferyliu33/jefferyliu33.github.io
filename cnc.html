@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- NOINDEX: keeps the site out of search engines. Delete the next line when ready to be indexed. -->
+  <meta name="robots" content="noindex">
+  <title>Jeffery Liu | Pick-and-Place CNC</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    /* ---------- Colour system (from the design note) ---------- */
+    :root {
+      --bg:        #0F1216;
+      --panel:     #171B21;
+      --hairline:  #2A2F37;
+      --text:      #E8EAED;
+      --muted:     #9BA1A9;
+      --navy:      #1F3864;
+      --accent:    #E0A24A;
+      --maxw: 1200px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Hanken Grotesk", sans-serif;
+      font-weight: 400;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ---------- Top bar (shared on every page) ---------- */
+    .topbar { border-bottom: 1px solid var(--hairline); }
+    .topbar-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 22px 32px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .wordmark {
+      font-family: "Archivo", sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.02em;
+    }
+    .nav {
+      display: flex;
+      gap: 28px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .nav a:hover { color: var(--text); }
+    .nav a.active { color: var(--text); }
+
+    /* ---------- Detail page ---------- */
+    .detail {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 32px 90px;
+    }
+
+    .detail-category {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 14px;
+    }
+    .detail-title {
+      font-family: "Archivo", sans-serif;
+      font-weight: 700;
+      font-size: clamp(32px, 5vw, 52px);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      margin: 0 0 32px;
+    }
+
+    /* detail-page media: fill the column, whole image shown, capped at ~80vh,
+       left-aligned to the column edge. No full-bleed, no box. */
+    figure { margin: 0 0 40px; }
+    .lead-figure { margin: 0 0 40px; }
+    .lead-img,
+    .seq-img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 80vh;
+      object-fit: contain;
+      margin: 0;
+      background: none;
+      border: 0;
+    }
+    /* lead video, same sizing rules as the images */
+    .lead-video {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 80vh;
+      margin: 0;
+    }
+    /* lead video: full column width, natural height, no crop */
+    .contain-video {
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0;
+    }
+    /* cropped landscape box for portrait source media */
+    .cropped-box {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      overflow: hidden;
+    }
+    .cropped-box video,
+    .cropped-box img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+      display: block;
+      margin: 0;
+      border: 0;
+    }
+    figcaption {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 14px;
+      letter-spacing: 0.02em;
+      line-height: 1.45;
+      color: var(--text);
+      max-width: 100%;
+      margin: 10px 0 0;
+    }
+
+    /* standfirst */
+    .standfirst {
+      font-size: clamp(18px, 2vw, 21px);
+      line-height: 1.55;
+      color: var(--text);
+      max-width: 100%;
+      margin: 0 0 44px;
+    }
+
+    /* section label, mono */
+    .section-label {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--hairline);
+      max-width: 100%;
+    }
+
+    /* section list */
+    .did-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 44px;
+      max-width: 100%;
+    }
+    .did-list li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 16px;
+      font-size: 16.5px;
+      line-height: 1.55;
+      color: var(--text);
+    }
+    .did-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 11px;
+      width: 7px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    /* bold result line, skim anchor */
+    .result-line {
+      font-family: "Archivo", sans-serif;
+      font-weight: 600;
+      font-size: clamp(19px, 2.2vw, 23px);
+      line-height: 1.35;
+      color: var(--accent);
+      max-width: 100%;
+      margin: 0 0 44px;
+      padding: 22px 0 22px 22px;
+      border-left: 2px solid var(--accent);
+    }
+
+    /* learned paragraph */
+    .learned {
+      font-size: 16.5px;
+      line-height: 1.6;
+      color: var(--text);
+      max-width: 100%;
+      margin: 0 0 60px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 56px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .back-link:hover { color: var(--accent); }
+  </style>
+
+  <link rel="stylesheet" href="motion.css">
+  <script src="motion.js" defer></script>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="wordmark" href="index.html">JEFFERY LIU</a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="cv.html">CV</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="detail">
+
+    <p class="detail-category">Automation / Mechatronics Design</p>
+    <h1 class="detail-title">Pick-and-Place CNC</h1>
+
+    <!-- Lead video: motion test -->
+    <figure class="lead-figure">
+      <video class="contain-video" autoplay muted loop playsinline controls preload="metadata">
+        <source src="images/cnc-motion.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <figcaption>Motion test running our own G-code. Movement only, not live pick-and-place. The single-motor gantry's far rail lags slightly and settles on each move.</figcaption>
+    </figure>
+
+    <!-- Intro paragraph -->
+    <p class="learned">A five-person team built a working pick-and-place CNC machine for about $130, the kind of machine that normally costs thousands and is too complex for a home workshop. We designed and built it from scratch: the frame, the three-axis motion system, and the nozzle assembly designed to place PCB components. The brief was something a hobbyist could assemble at home without specialist tools.</p>
+
+    <!-- Section: The brief -->
+    <p class="section-label">The brief</p>
+    <ul class="did-list">
+      <li>Targeted electronics hobbyists who find commercial pick-and-place machines too expensive and too complex to set up</li>
+      <li>Capped cost under $200, base under 300 x 300mm, with assembly under two hours and every part sourced off the shelf or 3D printed</li>
+    </ul>
+
+    <!-- Image: exploded CAD -->
+    <figure>
+      <img class="seq-img" src="images/cnc2.png" alt="Exploded CAD assembly of the pick-and-place CNC machine">
+      <figcaption>Exploded CAD assembly. Waterjet-cut aluminium plates, T-slot extrusions, linear rails, 3D-printed mounts and nozzle holder.</figcaption>
+    </figure>
+
+    <!-- Section: My part -->
+    <p class="section-label">My part</p>
+    <ul class="did-list">
+      <li>Built the belt-end securing and tensioning across the X and Y drives</li>
+      <li>Traced a binding fault during assembly to belt alignment</li>
+      <li>Ran much of the assembly and disassembly, which the brief set as a timed spec</li>
+    </ul>
+
+    <!-- Image: assembled prototype -->
+    <figure>
+      <div class="cropped-box">
+        <img src="images/cnc1.jpg" alt="Assembled pick-and-place CNC prototype on a workbench">
+      </div>
+      <figcaption>Assembled prototype. Belt-driven X and Y gantry, lead-screw Z plate at left, pneumatic nozzle in the centre.</figcaption>
+    </figure>
+
+    <!-- Section: Result -->
+    <p class="section-label">Result</p>
+    <p class="result-line">Built for $128.85, well under the $200 target ($21.60 excluding the provided university kit).</p>
+    <ul class="did-list">
+      <li>Assembled in one hour against a two-hour target</li>
+      <li>Positioned within 0.3mm against a 0.2mm goal</li>
+      <li>Frame deflection under 0.01mm, noise under 80dB</li>
+      <li>Validated by running G-code motion tests across all three axes</li>
+    </ul>
+
+    <!-- Section: Learned -->
+    <p class="section-label">Learned</p>
+    <p class="learned">Two things only showed up once the machine was physically together and running. A binding fault that looked fine in CAD came down to belt alignment. Driving the gantry from one side left the far rail to lag and settle on every move, flex and play that does not show on a model. CAD tells you what should happen. Running the hardware tells you what actually does.</p>
+
+    <!-- Status line -->
+    <p class="learned">Status: full-sized prototype, built and motion-tested.</p>
+
+    <a class="back-link" href="projects.html">&larr; Back to projects</a>
+
+  </main>
+
+</body>
+</html>

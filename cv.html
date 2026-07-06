@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en-NZ">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- NOINDEX: keeps the site out of search engines. Delete the next line when ready to be indexed. -->
+  <meta name="robots" content="noindex">
+  <title>Jeffery Liu | CV</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:        #0F1216;
+      --panel:     #171B21;
+      --hairline:  #2A2F37;
+      --text:      #E8EAED;
+      --muted:     #9BA1A9;
+      --navy:      #1F3864;
+      --accent:    #E0A24A;
+      --maxw: 1200px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Hanken Grotesk", sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .topbar { border-bottom: 1px solid var(--hairline); }
+    .topbar-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 22px 32px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .wordmark {
+      font-family: "Archivo", sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.02em;
+    }
+    .nav {
+      display: flex;
+      gap: 28px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .nav a:hover { color: var(--text); }
+    .nav a.active { color: var(--text); }
+
+    .page-head {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 56px 32px 0;
+    }
+    .page-kicker {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 14px;
+    }
+    .page-title {
+      font-family: "Archivo", sans-serif;
+      font-weight: 700;
+      font-size: clamp(34px, 5vw, 52px);
+      line-height: 1.05;
+      margin: 0;
+      letter-spacing: -0.01em;
+    }
+
+    .cv-actions {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 28px 32px 0;
+    }
+    .btn {
+      display: inline-block;
+      font-family: "Hanken Grotesk", sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      padding: 12px 22px;
+      border: 1px solid var(--accent);
+      border-radius: 2px;
+      color: var(--accent);
+      transition: background-color 0.15s ease, color 0.15s ease;
+    }
+    .btn:hover { background: var(--accent); color: var(--bg); }
+
+    /* embedded PDF */
+    .cv-embed-wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 28px 32px 80px;
+    }
+    .cv-embed {
+      width: 100%;
+      height: 85vh;
+      border: 1px solid var(--hairline);
+      background: var(--panel);
+    }
+    .cv-fallback {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      color: var(--muted);
+      padding: 24px;
+    }
+  </style>
+
+  <link rel="stylesheet" href="motion.css">
+  <script src="motion.js" defer></script>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="wordmark" href="index.html">JEFFERY LIU</a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="cv.html" class="active">CV</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="page-head">
+    <p class="page-kicker">Document</p>
+    <h1 class="page-title">CV</h1>
+  </section>
+
+  <div class="cv-actions">
+    <a class="btn" href="Jeffery_Liu_CV.pdf" download>Download CV (PDF)</a>
+  </div>
+
+  <div class="cv-embed-wrap">
+    <object class="cv-embed" data="Jeffery_Liu_CV.pdf" type="application/pdf">
+      <p class="cv-fallback">Your browser cannot display the embedded PDF.
+        <a href="Jeffery_Liu_CV.pdf" download style="color: var(--accent);">Download it here.</a>
+      </p>
+    </object>
+  </div>
+
+</body>
+</html>

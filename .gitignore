@@ -1,0 +1,17 @@
+# Internal working brief, not for publishing
+CLAUDE.md
+
+# Archived old homepage, not for publishing
+index_OLD.html
+
+# Raw video source; the site uses the converted images/cnc-motion.mp4
+images/IMG_9610 (1).mov
+
+# OS / sync cruft
+Thumbs.db
+desktop.ini
+.DS_Store
+*.tmp
+
+# Local tool settings
+.claude/

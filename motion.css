@@ -1,0 +1,67 @@
+/* ---------- Site-wide motion (shared) ----------
+   Limits: nothing over 250ms, ease-out only, no bounce/glow/ripple/parallax.
+   Scroll-reveal classes are added by motion.js; with JS off nothing is hidden.
+   All motion is wrapped in prefers-reduced-motion: no-preference. */
+
+/* 1. Page cross-fade: fade in on load, fade out before following an internal link
+      (the .page-exit class is set by motion.js) */
+@media (prefers-reduced-motion: no-preference) {
+  body {
+    animation: page-fade-in 200ms ease-out;
+  }
+  body.page-exit {
+    opacity: 0;
+    transition: opacity 150ms ease-out;
+  }
+}
+@keyframes page-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* 2. Scroll reveal: below-the-fold content fades/slides in once as it enters
+      the viewport. .reveal = waiting (hidden), .reveal-in = entering. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    opacity: 0;
+  }
+  .reveal-in {
+    animation: reveal-in 220ms ease-out backwards;
+  }
+}
+@keyframes reveal-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* 3. Press feedback: small scale-down on buttons, cards and nav links.
+      .btn re-declares its full transition list so the existing hover
+      colour transitions keep working alongside the transform. */
+@media (prefers-reduced-motion: no-preference) {
+  .nav a,
+  .wordmark,
+  .text-link,
+  .back-link,
+  .card,
+  .contact-value a {
+    transition: transform 100ms ease-out;
+  }
+  .contact-value a {
+    display: inline-block; /* transforms do not apply to inline elements */
+  }
+  .btn {
+    transition: border-color 0.15s ease, color 0.15s ease,
+                background-color 0.15s ease, transform 100ms ease-out;
+  }
+  .nav a:active,
+  .wordmark:active,
+  .text-link:active,
+  .back-link:active,
+  .btn:active,
+  .contact-value a:active {
+    transform: scale(0.97);
+  }
+  .card:active {
+    transform: scale(0.99);
+  }
+}
