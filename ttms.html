@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- NOINDEX: keeps the site out of search engines. Delete the next line when ready to be indexed. -->
   <meta name="robots" content="noindex">
-  <title>Jeffery Liu | Marine Snapback Research &amp; Design</title>
+  <title>Jeffery Liu | Tyre Temperature Sensor</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -113,24 +113,6 @@
       margin: 10px 0 0;
     }
 
-    /* labelled placeholder for an image not yet identified */
-    .img-placeholder {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      max-width: 100%;
-      aspect-ratio: 4 / 3;
-      margin: 0;
-      padding: 24px;
-      border: 1px dashed var(--hairline);
-      background: var(--panel);
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-      line-height: 1.5;
-      color: var(--muted);
-    }
-
     /* standfirst */
     .standfirst {
       font-size: clamp(18px, 2vw, 21px);
@@ -232,84 +214,78 @@
 
   <main class="detail">
 
-    <p class="detail-category">R&amp;D / Test Engineering</p>
-    <h1 class="detail-title">Marine Snapback Research &amp; Design</h1>
-
-    <!-- Standfirst -->
-    <p class="standfirst">My main project during an R&amp;D internship at Holmes Solutions, a Christchurch engineering consultancy. Mooring lines under tension can part and recoil violently, and how sharply a line bends over a fairlead or bollard, its D/d ratio, has a large effect on how much load it can really carry. I investigated that effect and designed an upgrade to the snapback test apparatus so it could test ropes at more realistic and safer bend geometries.</p>
+    <p class="detail-category">FSAE / Sensing</p>
+    <h1 class="detail-title">Tyre Temperature Sensor</h1>
 
     <!-- Lead image -->
     <figure class="lead-figure">
-      <img class="lead-img" src="images/holmes1.png" alt="Mooring snapback test with a loaded line recoiling at high speed">
-      <figcaption>Mooring snapback test. When a loaded line parts, the ends recoil at high speed. This is the hazard the test apparatus exists to study and contain.</figcaption>
+      <img class="lead-img" src="images/tyre4.png" alt="PCB layout for the Stage 1 tyre-temperature logging board">
     </figure>
+
+    <!-- Framing -->
+    <p class="standfirst">Junior-led project with UC Motorsport (FSAE), building the team's first onboard tyre-temperature logging system. Tyre grip is temperature dependent, and the control system currently has no visibility into it. Stage 1 is a standalone proof-of-concept board: an infrared sensor reads tyre surface temperature over I2C to an ESP32-S3, logged to CSV and retrieved over USB. Schematic, layout and BOM are complete, and the PCB and hardware are on order.</p>
 
     <!-- Section 1: Research -->
     <p class="section-label">Research</p>
     <ul class="did-list">
-      <li>Reviewed published research and industry guidance on how the D/d ratio affects mooring rope strength, efficiency and fatigue life, and how it ties into snapback risk.</li>
-      <li>Analysed previous in-house test data and compared the measured rope behaviour against published bending-efficiency theory and the capstan friction relationship.</li>
-      <li>Found that the bend geometries common in service can pull rope strength well below the idealised predictions, and identified friction across the bollard as a parameter that is not yet fully understood and worth investigating further.</li>
-      <li>Set a target geometry in line with OCIMF MEG-4 guidance, and authored a research summary that defined the engineering problem, performance targets and constraints for the apparatus upgrade.</li>
+      <li>Reviewed how tyre temperature is measured across FSAE and F1: internal probes ruled out as invasive and impractical, thermal cameras ruled out as unsuited to onboard logging, and contact sensors ruled out as unable to survive a rotating tyre.</li>
+      <li>Selected non-contact IR pyrometry, the team's recommended approach, as the method fitting a self-contained proof of concept.</li>
+      <li>Noted that surface temperature is a proxy for the carcass temperature that actually governs grip, and that professional teams run three sensors across the tread to see camber and pressure effects a single point hides. That shaped the multi-channel provisioning below.</li>
     </ul>
 
-    <!-- Section 2: Design and verification -->
-    <p class="section-label">Design and verification</p>
-    <ul class="did-list">
-      <li>Assessed the existing apparatus and defined its load constraints, and flagged that the existing foundation capacity needed checking before any higher-load testing rather than assuming it would carry the new loads.</li>
-      <li>Proposed and developed an interchangeable bollard-sleeve concept that bolts onto the existing structure, chosen for ease of manufacture and maintenance and so a range of bend geometries can be tested on the same base.</li>
-    </ul>
-
-    <!-- Image: CAD render of the sleeve assembly -->
+    <!-- Image: sensor mounting points -->
     <figure>
-      <img class="seq-img" src="images/Screenshot%202026-06-26%20125144.png" alt="The interchangeable sleeve assembly modelled in SolidWorks">
-      <figcaption>The interchangeable sleeve assembly modelled in SolidWorks. Bolting onto the existing base lets a range of bend geometries be tested on the same apparatus.</figcaption>
+      <img class="seq-img" src="images/tyre1.png" alt="Annotated mounting photo showing control arm and side skirt sensor mounting options">
+      <figcaption>Sensor mounting points on the car: control arm side and side skirt side.</figcaption>
     </figure>
 
     <ul class="did-list">
-      <li>Carried the capstan friction finding from the research through into the design, using free-body analysis to account for the tension imbalance across the bollard rather than assuming the load was symmetric.</li>
-      <li>Verified the concept with hand calculations (bolt shear, bearing stress, preload loss, plate bending) as structured safety checks to a comfortable margin, and used SolidWorks FEA to compare design iterations and identify stress concentrations before detailed verification. I picked up the FEA workflow on the job.</li>
-      <li>Produced a staged construction and installation plan.</li>
-      <li>All designs and calculations were reviewed and signed off by senior engineers.</li>
+      <li>Wrote the literature review that set the staged plan: Stage 1 standalone, Stage 2 CAN integration with the team's ECU, with the architecture chosen now so Stage 2 is not a redesign.</li>
+      <li>Got confirmation from the team lead on the first practical use for that data, if the proof of concept holds up: a variable friction coefficient fed into the car's newly implemented traction control system.</li>
     </ul>
 
-    <!-- Section 3: Fabrication and install -->
-    <p class="section-label">Fabrication and install</p>
-    <ul class="did-list">
-      <li>Supported fabrication of the sleeve, and ground the weld bevel on the existing bollard flange by hand to prepare the mating surface.</li>
-    </ul>
+    <!-- Section 2: System design and verification -->
+    <p class="section-label">System design and verification</p>
 
-    <!-- Image: ground weld bevel -->
+    <!-- Image: system architecture -->
     <figure>
-      <img class="seq-img" src="images/IMG_1123.jpeg" alt="Close-up of the ground weld bevel on the orange bollard flange">
-      <figcaption>Grinding the weld bevel on the existing bollard flange to prepare the joint.</figcaption>
+      <img class="seq-img" src="images/tyre2.png" alt="System architecture diagram showing Stage 1 standalone and Stage 2 vehicle integration">
+      <figcaption>System architecture, Stage 1 standalone and Stage 2 vehicle integration.</figcaption>
     </figure>
 
     <ul class="did-list">
-      <li>Prepared the weld joint and surrounding surfaces; the structural weld joining the sleeve to the bollard was completed by a certified welder.</li>
-      <li>Broke out the tarmac around the base with a breaker to clear the footprint for the install.</li>
+      <li>Selected the ESP32-S3 for its onboard CAN controller, needed for the later ECU integration.</li>
+      <li>Powered the board from a standalone battery so validation never touches the car's electrical system.</li>
+      <li>Designed the schematic in KiCad across five functional blocks, provisioning three sensor connectors so a second and third sensor are a population change later, not a respin, each on its own I2C bus since every sensor ships at the same address.</li>
     </ul>
 
-    <!-- Image: breaking out the tarmac -->
+    <!-- Image: Stage 1 schematic -->
     <figure>
-      <img class="seq-img" src="images/IMG_1118.jpeg" alt="Person in an orange hi-vis vest using a red breaker on tarmac around the base">
-      <figcaption>Breaking out the tarmac around the base during site preparation for the install.</figcaption>
+      <img class="seq-img" src="images/tyre3.png" alt="Stage 1 schematic screenshot from KiCad">
+      <figcaption>Stage 1 schematic, KiCad.</figcaption>
     </figure>
 
-    <!-- Image: the completed sleeve installed -->
-    <figure>
-      <img class="seq-img" src="images/holmes2.jpg" alt="The fabricated sleeve halves with mounting plate on the orange base plate">
-      <figcaption>The completed sleeve installed on the existing base, ready for full-scale testing.</figcaption>
-    </figure>
+    <ul class="did-list">
+      <li>Caught, before fabrication, that the microcontroller variant originally specified would fail to boot on its stock firmware image, and swapped to a footprint-compatible variant with no respin needed.</li>
+      <li>Took the layout through to a fully routed board, matched the manufacturing tolerances to the fab house's real capability, and passed JLCPCB's DFM check before ordering.</li>
+    </ul>
+
+    <!-- Section 3: Build preparation -->
+    <p class="section-label">Build preparation</p>
+    <ul class="did-list">
+      <li>Built a complete, vendor-neutral bill of materials and sourced mostly through DigiKey.</li>
+      <li>Reworked the power system on the fly when a planned battery went out of stock; the replacement ended up simpler than the original plan.</li>
+      <li>Specified the firmware for sensor reading, CSV logging and USB retrieval.</li>
+    </ul>
 
     <!-- Result line -->
-    <p class="result-line">Took the upgrade from research and problem definition through concept, verification and drawings to fabrication and install. First round of full-scale testing has since been run. I am a co-author on the resulting technical paper, to be presented in August 2026.</p>
+    <p class="result-line">Schematic, layout and BOM complete, DFM-passed by JLCPCB. PCB and hardware now on order.</p>
 
     <!-- Learned -->
     <p class="section-label">Learned</p>
     <ul class="did-list">
-      <li>Structural verification in industry is about proving a comfortable safety margin on the upgrade, not chasing an exact number. On a ground-based rig you can buy that margin with steel, which does not transfer where mass or cost binds.</li>
-      <li>I learned to lock in build decisions earlier. I spent too long refining the design and missed the build stage I wanted to oversee.</li>
+      <li>I learned to validate every part choice against its actual stock and spec before locking it in, not just the datasheet. That caught a guaranteed no-boot board before fabrication.</li>
+      <li>I learned to gauge how far to design ahead. Extra sensor connectors were cheap, low-risk insurance for a stage that isn't scoped yet. A full CAN circuit would have been overreach at this stage, especially while I was still building PCB experience.</li>
     </ul>
 
     <a class="back-link" href="projects.html">&larr; Back to projects</a>
