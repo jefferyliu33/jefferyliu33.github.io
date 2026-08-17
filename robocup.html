@@ -225,14 +225,14 @@
 
     <!-- Lead image -->
     <figure class="lead-figure">
-      <img class="lead-img" src="images/robocup3.jpeg" alt="The assembled robot from a three-quarter angle, showing the drum intake and driveline">
-      <figcaption>The robot as it stands, drum intake and driveline both visible from this angle.</figcaption>
+      <img class="lead-img" src="images/robocup_full_assembly.jpeg" alt="The fully assembled RoboCup collection robot on its competition chassis">
+      <figcaption>The robot as it stands, fully assembled on the competition chassis.</figcaption>
     </figure>
 
     <!-- Section: Concept and architecture -->
     <p class="section-label">Concept and architecture</p>
     <ul class="did-list">
-      <li>Proposed a rotating drum with rubber flaps as the intake: the drum spins and the flaps sweep each weight off the floor and up a fixed ramp into the robot. The team picked it to run with.</li>
+      <li>Proposed a rotating drum with rubber flaps as the intake: the drum spins and the flaps sweep each weight off the floor and up a fixed ramp into the robot. The team picked it to run with, scoring highest in the weighted decision matrix (4.77 vs 4.00 and 3.71), strongest on throughput and traversal.</li>
       <li>Kept the mechanism deliberately simple, few moving parts and easy to build and maintain, which keeps the final design reliable rather than fragile or over-complicated.</li>
       <li>A combine-harvester style intake had been done before, but not the rubber-flap version, partly because the rules this year restricted elastomeric materials above an aspect ratio of 5. Teammates were leaning towards an electromagnet-based intake, so proving the flap drum worked, and was not over-complicated, settled the direction.</li>
     </ul>
@@ -260,7 +260,7 @@
     <!-- Image: given competition chassis -->
     <figure>
       <img class="seq-img" src="images/IMG_2096.jpeg" alt="The given tracked competition chassis with metal top plate, timing-belt tracks and two motors">
-      <figcaption>The given competition drivetrain in its default setup. The drum, sorting and drive wheels are what we design on top.</figcaption>
+      <figcaption>The given competition drivetrain in its default setup.</figcaption>
     </figure>
 
     <!-- Section: Proof of concept -->
@@ -272,7 +272,7 @@
     <!-- Image: proof-of-concept drum -->
     <figure>
       <img class="seq-img" src="images/IMG_2132.jpeg" alt="The 3D-printed proof-of-concept drum with rubber flaps mounted between two motors on a blue bench">
-      <figcaption>The proof-of-concept drum, 3D printed with rubber flaps and assembled in an afternoon.</figcaption>
+      <figcaption>The proof-of-concept drum: 3D-printed axle, off-the-shelf rubber flaps, two motors.</figcaption>
     </figure>
 
     <ul class="did-list">
@@ -283,7 +283,7 @@
     <!-- Image: flaps deforming around a weight -->
     <figure>
       <img class="seq-img" src="images/robocup2.png" alt="Two hands holding a red-framed test rig with the black flap drum pressing around a weight">
-      <figcaption>The flaps deforming around a weight as the drum turns, which is what grips it up the ramp.</figcaption>
+      <figcaption>The flap mid-deformation, gripping the weight before it clears the ramp.</figcaption>
     </figure>
 
     <figure>
@@ -292,27 +292,41 @@
         <source src="images/3E7C5CCF-1AC9-4046-AE78-061AA36AC2DD.MOV" type="video/quicktime">
         Your browser does not support the video tag.
       </video>
-      <figcaption>Testing the drum capturing a weight, lying flat so the flaps and ramp are visible.</figcaption>
+      <figcaption>Bench testing the drum capturing a weight.</figcaption>
     </figure>
 
     <!-- Section: Build -->
     <p class="section-label">Build</p>
     <ul class="did-list">
-      <li>Picks up every weight on the floor, target and snitch (the small mobile sphere) alike, bar the heaviest 1 kg weight, which is what we're chasing now.</li>
-      <li>Reprinted the drive wheels in PETG with the tread running the right way round this time. The bore's still a straight push-fit onto the motor shaft, a version with a metal insert is printed and waiting to go on.</li>
-      <li>Sprung the intake ramp so it sits about 10 mm off the ground instead of flush, which lets it clear low obstacles on the way in. A weight pushes the ramp down on contact, so the clearance costs nothing on pickup.</li>
-      <li>Got the ToF sensors reading and feeding into drive control, so the robot reacts to what's ahead of it. Proper navigation logic hasn't gone in yet.</li>
-      <li>Found the drum and drive motors won't both spool up if the software slams full power to them at once, one just stalls. Ramping them to speed instead got past a ceiling of around 50% duty cycle.</li>
-      <li>Sprayed the internal acrylic ramp with PTFE dry lube so weights slide more easily, letting it sit at a shallower internal angle. Sorting is still to build.</li>
+      <li>Refined the drum through two iterations: moved from six pinned flaps to three centrally clamped flaps to stop them working loose, and swapped the drive motor for a lower-speed, higher-torque unit after the original stalled under load.</li>
     </ul>
 
     <figure>
-      <img class="seq-img" src="images/robocup8.jpeg" alt="Close-up of the sprung intake ramp, showing the clearance gap above the ground">
-      <figcaption>The test ramp, laser cut flat from acrylic, heat-formed and pressed into shape over a set of 3D-printed moulds. Sprung above the ground so it rides over obstacles rather than catching on them.</figcaption>
+      <img class="seq-img" src="images/robocup_drum_exploded_view.jpeg" alt="Labelled CAD exploded view of the drum subassembly: coupler, motor mount, flap clamp, rubber flap, rod end and motor">
+      <figcaption>Exploded view of the drum subassembly after the second iteration: three centrally clamped flaps.</figcaption>
+    </figure>
+
+    <ul class="did-list">
+      <li>Validated collection on the heaviest test weight: 7 of 10 trials succeeded in 2 to 7 seconds; the failures traced to edge-slip and a flat battery, both now scoped as fixes.</li>
+    </ul>
+
+    <figure>
+      <img class="seq-img" src="images/robocup_collection_mechanism.jpeg" alt="The collection mechanism shown next to a weight for scale">
+      <figcaption>The collection mechanism, shown with a test weight for scale.</figcaption>
+    </figure>
+
+    <ul class="did-list">
+      <li>Ran a Fault Tree Analysis that directly shaped two design decisions: stiffened flaps to stop over-deflection under the heaviest load, and lower-speed, higher-torque motors.</li>
+      <li>Sorting, storage and return-to-base logic still to be built and tested; on track for final assessment.</li>
+    </ul>
+
+    <figure>
+      <img class="seq-img" src="images/robocup_sorting_concept_A.png" alt="Hand-drawn concept sketch for the revised sorting mechanism">
+      <figcaption>Revised concept sketch for the sorting mechanism, still to be built.</figcaption>
     </figure>
 
     <!-- Result line -->
-    <p class="result-line">The robot now drives up, picks up every weight and the snitch, and rides straight over the arena's obstacles on the way in. The heaviest 1 kg weight is the only one it struggles with.</p>
+    <p class="result-line">Structured testing found the next fix early: stiffen the flaps to stop over-deflection under the heaviest load, avoiding time-consuming guesswork.</p>
 
     <!-- Learned -->
     <p class="section-label">Learned</p>

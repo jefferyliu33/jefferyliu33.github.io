@@ -218,7 +218,7 @@
     <h1 class="detail-title">Tyre Temperature Sensor</h1>
 
     <!-- Framing -->
-    <p class="standfirst">Junior-led project with UC Motorsport (FSAE), building the team's first onboard tyre-temperature logging system. Tyre grip is temperature dependent, and the control system currently has no visibility into it. Stage 1 is a standalone proof-of-concept board: an infrared sensor reads tyre surface temperature over I2C to an ESP32-S3, logged to CSV and retrieved over USB. Schematic, layout and BOM are complete, and the PCB and hardware are on order.</p>
+    <p class="standfirst">Junior-led project with UC Motorsport (FSAE), building the team's first onboard tyre-temperature logging system. Tyre grip is temperature dependent, and the control system currently has no visibility into it. Stage 1 is a standalone proof-of-concept board: an infrared sensor reads tyre surface temperature over I2C to an ESP32-S3, logged to CSV and retrieved over USB. Schematic, layout and BOM are complete, the board is built, and it's now in bench testing.</p>
 
     <!-- Lead image -->
     <figure class="lead-figure">
@@ -236,7 +236,7 @@
     <!-- Image: sensor mounting points -->
     <figure>
       <img class="seq-img" src="images/tyre1.png" alt="Annotated mounting photo showing control arm and side skirt sensor mounting options">
-      <figcaption>Sensor mounting points on the car: control arm side and side skirt side.</figcaption>
+      <figcaption>Initial proposed sensor mounting points on the car.</figcaption>
     </figure>
 
     <ul class="did-list">
@@ -266,7 +266,7 @@
     </figure>
 
     <ul class="did-list">
-      <li>Caught, before fabrication, that the microcontroller variant originally specified would fail to boot on its stock firmware image, and swapped to a footprint-compatible variant with no respin needed.</li>
+      <li>Caught, before fabrication, that no off-the-shelf firmware image existed for the initial lower-spec microcontroller variant, and swapped to a higher-spec, footprint-compatible variant with no redesign needed on the schematic or PCB layout.</li>
       <li>Took the layout through to a fully routed board, matched the manufacturing tolerances to the fab house's real capability, and passed JLCPCB's DFM check before ordering.</li>
     </ul>
 
@@ -276,15 +276,35 @@
       <li>Built a complete, vendor-neutral bill of materials and sourced mostly through DigiKey.</li>
       <li>Reworked the power system on the fly when a planned battery went out of stock; the replacement ended up simpler than the original plan.</li>
       <li>Specified the firmware for sensor reading, CSV logging and USB retrieval.</li>
+      <li>Learned manual pick-and-place myself: applied solder paste through a stencil, hand-placed components under a microscope, then reflowed the board to a fully populated PCB, now moving into bench testing.</li>
     </ul>
 
+    <div class="sequence">
+      <figure>
+        <img class="seq-img" src="images/ttms_1_solder_paste_stencil.jpeg" alt="Solder paste applied through the stencil">
+        <figcaption>Solder paste applied through the stencil.</figcaption>
+      </figure>
+      <figure>
+        <img class="seq-img" src="images/ttms_2_manual_pick_and_place.jpeg" alt="Hand-placing components under the microscope on the manual pick-and-place machine">
+        <figcaption>Hand-placing components under the microscope on the manual pick-and-place machine.</figcaption>
+      </figure>
+      <figure>
+        <img class="seq-img" src="images/ttms_3_reflow_oven.jpeg" alt="The board going through the reflow oven">
+        <figcaption>The board going through the reflow oven.</figcaption>
+      </figure>
+      <figure>
+        <img class="seq-img" src="images/ttms_4_populated_board.jpeg" alt="The finished, fully populated board">
+        <figcaption>The finished, fully populated board.</figcaption>
+      </figure>
+    </div>
+
     <!-- Result line -->
-    <p class="result-line">Schematic, layout and BOM complete, DFM-passed by JLCPCB. PCB and hardware now on order.</p>
+    <p class="result-line">Schematic, layout and BOM complete. Board manufactured and assembled with no issues, now in bench testing.</p>
 
     <!-- Learned -->
     <p class="section-label">Learned</p>
     <ul class="did-list">
-      <li>I learned to validate every part choice against its actual stock and spec before locking it in, not just the datasheet. That caught a guaranteed no-boot board before fabrication.</li>
+      <li>I learned to check a part choice against every domain it affects. Here that meant confirming firmware support existed before locking in the MCU variant.</li>
       <li>I learned to gauge how far to design ahead. Extra sensor connectors were cheap, low-risk insurance for a stage that isn't scoped yet. A full CAN circuit would have been overreach at this stage, especially while I was still building PCB experience.</li>
     </ul>
 
