@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- NOINDEX: keeps the site out of search engines. Delete the next line when ready to be indexed. -->
   <meta name="robots" content="noindex">
-  <title>Jeffery Liu | Tyre Temperature Sensor</title>
+  <title>Jeffery Liu | Tyre Temperature Monitoring System</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -215,10 +215,10 @@
   <main class="detail">
 
     <p class="detail-category">FSAE / Sensing</p>
-    <h1 class="detail-title">Tyre Temperature Sensor</h1>
+    <h1 class="detail-title">Tyre Temperature Monitoring System</h1>
 
     <!-- Framing -->
-    <p class="standfirst">Junior-led project with UC Motorsport (FSAE), building the team's first onboard tyre-temperature logging system. Tyre grip is temperature dependent, and the control system currently has no visibility into it. Stage 1 is a standalone proof-of-concept board: an infrared sensor reads tyre surface temperature over I2C to an ESP32-S3, logged to CSV and retrieved over USB. Schematic, layout and BOM are complete, the board is built, and it's now in bench testing.</p>
+    <p class="standfirst">Junior-led project with UC Motorsport (FSAE), building the team's first onboard tyre-temperature logging system. Tyre grip is temperature dependent, and the control system currently has no visibility into it. Stage 1 is a standalone proof-of-concept board: an infrared sensor reads tyre surface temperature over I2C to an ESP32-S3, logged to CSV and retrieved over USB. Schematic, layout and BOM are complete, the board is built, and it's now completed its first round of track testing.</p>
 
     <!-- Lead image -->
     <figure class="lead-figure">
@@ -275,8 +275,8 @@
     <ul class="did-list">
       <li>Built a complete, vendor-neutral bill of materials and sourced mostly through DigiKey.</li>
       <li>Reworked the power system on the fly when a planned battery went out of stock; the replacement ended up simpler than the original plan.</li>
-      <li>Specified the firmware for sensor reading, CSV logging and USB retrieval.</li>
-      <li>Learned manual pick-and-place myself: applied solder paste through a stencil, hand-placed components under a microscope, then reflowed the board to a fully populated PCB, now moving into bench testing.</li>
+      <li>Developed the firmware for sensor reading, CSV logging and USB retrieval. It logs data correctly, with a few things still to optimise.</li>
+      <li>Learned manual pick-and-place myself: applied solder paste through a stencil, hand-placed components under a microscope, then reflowed the board to a fully populated PCB.</li>
     </ul>
 
     <div class="sequence">
@@ -298,8 +298,38 @@
       </figure>
     </div>
 
+    <!-- Section: Mounting and track testing -->
+    <p class="section-label">Mounting and track testing</p>
+    <ul class="did-list">
+      <li>Designed the housing to clip onto the car and take vibration and up to 2.5 G of lateral force: a sliding lid for access, and a two-bolt clamp with rubber padding that jacks tight against the mount point.</li>
+    </ul>
+
+    <figure>
+      <img class="seq-img" src="images/tyre6.jpeg" alt="The housing open showing the internal PCB and battery, with the pivoting sensor assembly held up for scale">
+      <figcaption>The housing internals and sensor assembly, held up for scale.</figcaption>
+    </figure>
+
+    <ul class="did-list">
+      <li>3D printed a separate mount for the sensor using the same clip-on approach, with a pivoting nozzle so the aim can be adjusted independently of the housing.</li>
+      <li>Fitted both to the car and ran the system standalone off the board's own battery, with no tie into the car's electrical system.</li>
+    </ul>
+
+    <figure>
+      <img class="seq-img" src="images/tyre7.jpeg" alt="The housing and sensor mount clipped onto the car next to the tyre">
+      <figcaption>Both mounts clipped onto the car, ready for track testing.</figcaption>
+    </figure>
+
+    <ul class="did-list">
+      <li>Held on with no issues through the first round of track testing. A second round is planned to validate sensing quality against the tyre.</li>
+    </ul>
+
+    <figure>
+      <img class="seq-img" src="images/tyre8.jpeg" alt="The sensor nozzle aimed at the tyre, viewed from close to the wheel">
+      <figcaption>The sensor's-eye view: nozzle aimed at the tyre.</figcaption>
+    </figure>
+
     <!-- Result line -->
-    <p class="result-line">Schematic, layout and BOM complete. Board manufactured and assembled with no issues, now in bench testing.</p>
+    <p class="result-line">Housing and sensor mount 3D printed and clipped onto the car; held through the first round of track testing, with sensing validation next.</p>
 
     <!-- Learned -->
     <p class="section-label">Learned</p>
