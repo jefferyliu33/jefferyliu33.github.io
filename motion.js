@@ -16,7 +16,6 @@
     '.detail > .did-list',
     '.detail > .learned',
     '.detail > .result-line',
-    '.detail > .back-link',
     '.grid .card',
     '.contact-row',
     '.cv-actions',
