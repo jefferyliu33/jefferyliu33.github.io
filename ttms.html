@@ -320,7 +320,10 @@
     </figure>
 
     <ul class="did-list">
-      <li>Held on with no issues through the first round of track testing. A second round is planned to validate sensing quality against the tyre.</li>
+      <li>Held on with no issues through the first round of track testing.</li>
+      <li>First test returned clean, usable data: a 46-minute session at 5 Hz, tyre temperature ranging 20.6°C to 86.1°C, with only 0.2% of samples flagged, all during the initial power-up.</li>
+      <li>Built an offline log viewer to check data quality between and after sessions: drag-and-drop CSV loading, toggleable ambient and rolling-median-filter overlays, and per-channel quality stats.</li>
+      <li>Calculated that USB mass storage supports around 5 hours of continuous logging at 5 Hz, comfortably covering a full test session.</li>
     </ul>
 
     <figure>
@@ -328,8 +331,13 @@
       <figcaption>The sensor's-eye view: nozzle aimed at the tyre.</figcaption>
     </figure>
 
+    <figure>
+      <img class="seq-img" src="images/tyre9.png" alt="Screenshot of the TTMS Log Viewer: a tyre-temperature session plotted with raw and 1-second median filter traces, ambient overlay, and a per-channel data quality table">
+      <figcaption>The log viewer: raw vs median-filtered data, ambient overlay, and per-channel quality stats.</figcaption>
+    </figure>
+
     <!-- Result line -->
-    <p class="result-line">Housing and sensor mount 3D printed and clipped onto the car; held through the first round of track testing, with sensing validation next.</p>
+    <p class="result-line">First track test produced clean, usable data: 99.8% valid over a 46-minute session at 5 Hz, refined with a rolling median filter. The system can log continuously for around 5 hours on USB mass storage.</p>
 
     <!-- Learned -->
     <p class="section-label">Learned</p>
