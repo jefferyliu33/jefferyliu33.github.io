@@ -5,198 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- NOINDEX: keeps the site out of search engines. Delete the next line when ready to be indexed. -->
   <meta name="robots" content="noindex">
+  <!-- DRAFT: board-layout prototype of ttms.html. Not linked from anywhere. -->
   <title>Jeffery Liu | Tyre Temperature Monitoring System</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <style>
-    /* ---------- Colour system (from the design note) ---------- */
-    :root {
-      --bg:        #0F1216;
-      --panel:     #171B21;
-      --hairline:  #2A2F37;
-      --text:      #E8EAED;
-      --muted:     #9BA1A9;
-      --navy:      #1F3864;
-      --accent:    #E0A24A;
-      --maxw: 1200px;
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Hanken Grotesk", sans-serif;
-      font-weight: 400;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
-
-    /* ---------- Top bar (shared on every page) ---------- */
-    .topbar { border-bottom: 1px solid var(--hairline); }
-    .topbar-inner {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 22px 32px;
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .wordmark {
-      font-family: "Archivo", sans-serif;
-      font-weight: 700;
-      font-size: 18px;
-      letter-spacing: 0.02em;
-    }
-    .nav {
-      display: flex;
-      gap: 28px;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .nav a:hover { color: var(--text); }
-    .nav a.active { color: var(--text); }
-
-    /* ---------- Detail page ---------- */
-    .detail {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 48px 32px 90px;
-    }
-
-    .detail-category {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 0 0 14px;
-    }
-    .detail-title {
-      font-family: "Archivo", sans-serif;
-      font-weight: 700;
-      font-size: clamp(32px, 5vw, 52px);
-      line-height: 1.05;
-      letter-spacing: -0.01em;
-      margin: 0 0 32px;
-    }
-
-    /* detail-page images: constrained to the text column width,
-       natural aspect ratio, capped at ~80vh, centred. No full-bleed. */
-    figure { margin: 0 0 40px; }
-    .lead-figure { margin: 0 0 40px; }
-    /* article images (hero and in-body): fill the column, whole image shown,
-       capped height, left-aligned to the column edge, no box */
-    .lead-img,
-    .seq-img {
-      display: block;
-      width: 100%;
-      height: auto;
-      max-height: 80vh;
-      object-fit: contain;
-      margin: 0;
-      background: none;
-      border: 0;
-    }
-    figcaption {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 14px;
-      letter-spacing: 0.02em;
-      line-height: 1.45;
-      color: var(--text);
-      max-width: 100%;
-      margin: 10px 0 0;
-    }
-
-    /* standfirst */
-    .standfirst {
-      font-size: clamp(18px, 2vw, 21px);
-      line-height: 1.55;
-      color: var(--text);
-      max-width: 100%;
-      margin: 0 0 44px;
-    }
-
-    /* section label, mono */
-    .section-label {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin: 0 0 18px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--hairline);
-      max-width: 100%;
-    }
-
-    /* what I did / section list */
-    .did-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 44px;
-      max-width: 100%;
-    }
-    .did-list li {
-      position: relative;
-      padding-left: 22px;
-      margin-bottom: 16px;
-      font-size: 16.5px;
-      line-height: 1.55;
-      color: var(--text);
-    }
-    .did-list li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 11px;
-      width: 7px;
-      height: 1px;
-      background: var(--accent);
-    }
-
-    /* bold result line, skim anchor */
-    .result-line {
-      font-family: "Archivo", sans-serif;
-      font-weight: 600;
-      font-size: clamp(19px, 2.2vw, 23px);
-      line-height: 1.35;
-      color: var(--accent);
-      max-width: 100%;
-      margin: 0 0 44px;
-      padding: 22px 0 22px 22px;
-      border-left: 2px solid var(--accent);
-    }
-
-    /* learned paragraph */
-    .learned {
-      font-size: 16.5px;
-      line-height: 1.6;
-      color: var(--text);
-      max-width: 100%;
-      margin: 0 0 60px;
-    }
-
-    /* image sequence (image sizing is shared with the lead image above) */
-    .sequence { display: grid; gap: 36px; }
-
-    .back-link {
-      display: inline-block;
-      margin-top: 56px;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .back-link:hover { color: var(--accent); }
-  </style>
+  <link rel="stylesheet" href="boards.css">
 
   <link rel="stylesheet" href="motion.css">
   <script src="motion.js" defer></script>
+  <script src="boards.js" defer></script>
 </head>
 <body>
 
@@ -212,143 +32,312 @@
     </div>
   </header>
 
-  <main class="detail">
+  <main class="page">
 
-    <p class="detail-category">FSAE / Sensing</p>
-    <h1 class="detail-title">Tyre Temperature Monitoring System</h1>
-
-    <!-- Framing -->
-    <p class="standfirst">Junior-led project with UC Motorsport (FSAE), building the team's first onboard tyre-temperature logging system. Tyre grip is temperature dependent, and the control system currently has no visibility into it. Stage 1 is a standalone proof-of-concept board: an infrared sensor reads tyre surface temperature over I2C to an ESP32-S3, logged to CSV and retrieved over USB. Schematic, layout and BOM are complete, the board is built, and it's now completed its first round of track testing.</p>
-
-    <!-- Lead image -->
-    <figure class="lead-figure">
-      <img class="lead-img" src="images/tyre4.png" alt="PCB layout for the Stage 1 tyre-temperature logging board" style="max-height: 64vh;">
-    </figure>
-
-    <!-- Section 1: Research -->
-    <p class="section-label">Research</p>
-    <ul class="did-list">
-      <li>Reviewed how tyre temperature is measured across FSAE and F1: internal probes ruled out as invasive and impractical, thermal cameras ruled out as unsuited to onboard logging, and contact sensors ruled out as unable to survive a rotating tyre.</li>
-      <li>Selected non-contact IR pyrometry, the team's recommended approach, as the method fitting a self-contained proof of concept.</li>
-      <li>Noted that surface temperature is a proxy for the carcass temperature that actually governs grip, and that professional teams run three sensors across the tread to see camber and pressure effects a single point hides. That shaped the multi-channel provisioning below.</li>
-    </ul>
-
-    <!-- Image: sensor mounting points -->
-    <figure>
-      <img class="seq-img" src="images/tyre1.png" alt="Annotated mounting photo showing control arm and side skirt sensor mounting options">
-      <figcaption>Initial proposed sensor mounting points on the car.</figcaption>
-    </figure>
-
-    <ul class="did-list">
-      <li>Wrote the literature review that set the staged plan: Stage 1 standalone, Stage 2 CAN integration with the team's ECU, with the architecture chosen now so Stage 2 is not a redesign.</li>
-      <li>Got confirmation from the team lead on the first practical use for that data, if the proof of concept holds up: a variable friction coefficient fed into the car's newly implemented traction control system.</li>
-    </ul>
-
-    <!-- Section 2: System design and verification -->
-    <p class="section-label">System design and verification</p>
-
-    <!-- Image: system architecture -->
-    <figure>
-      <img class="seq-img" src="images/tyre2.png" alt="System architecture diagram showing Stage 1 standalone and Stage 2 vehicle integration">
-      <figcaption>System architecture, Stage 1 standalone and Stage 2 vehicle integration.</figcaption>
-    </figure>
-
-    <ul class="did-list">
-      <li>Selected the ESP32-S3 for its onboard CAN controller, needed for the later ECU integration.</li>
-      <li>Powered the board from a standalone battery so validation never touches the car's electrical system.</li>
-      <li>Designed the schematic in KiCad across five functional blocks, provisioning three sensor connectors so a second and third sensor are a population change later, not a respin, each on its own I2C bus since every sensor ships at the same address.</li>
-    </ul>
-
-    <!-- Image: Stage 1 schematic -->
-    <figure>
-      <img class="seq-img" src="images/tyre3.png" alt="Stage 1 schematic screenshot from KiCad">
-      <figcaption>Stage 1 schematic, KiCad.</figcaption>
-    </figure>
-
-    <ul class="did-list">
-      <li>Caught, before fabrication, that no off-the-shelf firmware image existed for the initial lower-spec microcontroller variant, and swapped to a higher-spec, footprint-compatible variant with no redesign needed on the schematic or PCB layout.</li>
-      <li>Took the layout through to a fully routed board, matched the manufacturing tolerances to the fab house's real capability, and passed JLCPCB's DFM check before ordering.</li>
-    </ul>
-
-    <!-- Section 3: Build preparation -->
-    <p class="section-label">Build preparation</p>
-    <ul class="did-list">
-      <li>Built a complete, vendor-neutral bill of materials and sourced mostly through DigiKey.</li>
-      <li>Reworked the power system on the fly when a planned battery went out of stock; the replacement ended up simpler than the original plan.</li>
-      <li>Developed the firmware for sensor reading, CSV logging and USB retrieval. It logs data correctly, with a few things still to optimise.</li>
-      <li>Learned manual pick-and-place myself: applied solder paste through a stencil, hand-placed components under a microscope, then reflowed the board to a fully populated PCB.</li>
-    </ul>
-
-    <div class="sequence">
-      <figure>
-        <img class="seq-img" src="images/ttms_1_solder_paste_stencil.jpeg" alt="Solder paste applied through the stencil">
-        <figcaption>Solder paste applied through the stencil.</figcaption>
+    <!-- ===== Hero ===== -->
+    <section class="board hero">
+      <div class="c1-6">
+        <p class="detail-category">FSAE / Sensing</p>
+        <h1 class="detail-title">Tyre Temperature Monitoring System</h1>
+        <p class="standfirst">Junior-led project with UC Motorsport (FSAE), building the team's first onboard tyre-temperature logging system. Tyre grip is temperature dependent, and the control system currently has no visibility into it.</p>
+        <dl class="facts">
+          <div><dt>Stage</dt><dd>Stage 1 of 2: a standalone proof-of-concept board</dd></div>
+          <div><dt>Built with</dt><dd>ESP32-S3, infrared sensor over I2C, KiCad, 3D-printed mounts</dd></div>
+          <div><dt>Power</dt><dd>Its own battery, no tie into the car's electrical system</dd></div>
+          <div><dt>Status</dt><dd>Built, and through its first round of track testing</dd></div>
+        </dl>
+      </div>
+      <figure class="c7-12 hero-media">
+        <img class="shot" src="images/ttms_mounted_workshop.jpg" width="1500" height="2000" alt="The TTMS housing and sensor mount clipped onto the car beside the rear tyre, in the workshop">
+        <figcaption>Housing and sensor mount, clipped on.</figcaption>
       </figure>
-      <figure>
-        <img class="seq-img" src="images/ttms_2_manual_pick_and_place.jpeg" alt="Hand-placing components under the microscope on the manual pick-and-place machine">
-        <figcaption>Hand-placing components under the microscope on the manual pick-and-place machine.</figcaption>
+    </section>
+
+    <!-- ===== 01 Research ===== -->
+    <section class="board">
+      <div class="c1-4 stack">
+        <div>
+          <p class="board-num">01</p>
+          <h2 class="board-title">Research</h2>
+          <ul class="did-list">
+            <li>Compared how FSAE and F1 teams measure tyre temperature, and chose non-contact IR, the team's recommended approach.</li>
+            <li>Set a staged plan in the literature review: standalone first, then CAN into the ECU, with the architecture chosen now so Stage 2 is not a redesign.</li>
+          </ul>
+        </div>
+        <figure class="drop" style="--drop: 16px">
+          <img class="shot" src="images/f1_tyre_sensor_reference.jpg" width="1417" height="945" loading="lazy" decoding="async" alt="Close-up of an F1 car's floor edge beside the rear tyre, with an infrared tyre-temperature sensor pod aimed at the tread">
+          <figcaption>How F1 mounts one: an infrared sensor on the floor edge, aimed across the tread. <span class="credit">Photo: High Power Media.</span></figcaption>
+        </figure>
+      </div>
+      <figure class="c5-12 solo mid">
+        <img class="shot" style="--ar: 2.24" src="images/tyre1.png" width="1702" height="760" loading="lazy" decoding="async" alt="Annotated mounting photo showing control arm and side skirt sensor mounting options">
+        <figcaption>Initial proposed sensor mounting points.</figcaption>
       </figure>
-      <figure>
-        <img class="seq-img" src="images/ttms_3_reflow_oven.jpeg" alt="The board going through the reflow oven">
-        <figcaption>The board going through the reflow oven.</figcaption>
+    </section>
+
+    <!-- ===== 02 Design ===== -->
+    <section class="board">
+      <div class="c1-4 mid">
+        <p class="board-num">02</p>
+        <h2 class="board-title">Design</h2>
+        <ul class="did-list">
+          <li>Picked the ESP32-S3 for its onboard CAN controller, needed for Stage 2.</li>
+          <li>Gave each of the three sensor connectors its own I2C bus, since every sensor ships at the same address. More sensors later is a population change, not a respin.</li>
+          <li>Caught before fabrication that the first microcontroller variant had no firmware image, and swapped to a footprint-compatible one with no redesign.</li>
+          <li>Stage 2 should now be simpler than drawn: the dash has an I2C input the sensors can hook straight into.</li>
+        </ul>
+      </div>
+
+      <figure class="c5-12">
+        <div class="arch-scroll">
+        <svg class="arch" viewBox="0 0 1200 600" role="img" aria-labelledby="archTitle archDesc" preserveAspectRatio="xMidYMid meet">
+          <title id="archTitle">System architecture</title>
+          <desc id="archDesc">Stage 1, the current standalone proof of concept: an MLX90614 infrared sensor feeds an ESP32-S3 WROOM over I2C, which writes a CSV log retrieved over USB. An 18650 cell charges through a TP4056 and is regulated by an XC6206 LDO to a 3.3 volt rail. Stage 2, architected for the future: up to three MLX90614 sensors per tyre feed the same ESP32-S3 acting as CAN controller, through an SN65HVD230 CAN transceiver to a Motec M150 ECU and on to the control system and driver display.</desc>
+          <defs>
+            <marker id="arw" viewBox="0 0 10 8" refX="9" refY="4" markerWidth="8" markerHeight="7" orient="auto">
+              <path d="M0,0 L10,4 L0,8 z" fill="#6E757D"></path>
+            </marker>
+          </defs>
+
+          <!-- Stage 1 -->
+          <text class="a-stage" x="0" y="14">STAGE 1</text>
+          <text class="a-note" x="96" y="14">Standalone proof of concept (current)</text>
+
+          <g class="a-box">
+            <rect x="0" y="48" width="230" height="70" rx="6"></rect>
+            <text class="a-name" x="115" y="78">MLX90614</text>
+            <text class="a-sub" x="115" y="98">IR sensor, 1 per tyre</text>
+          </g>
+          <g class="a-box a-key">
+            <rect x="330" y="48" width="250" height="70" rx="6"></rect>
+            <text class="a-name" x="455" y="78">ESP32-S3 WROOM</text>
+            <text class="a-sub" x="455" y="98">microcontroller</text>
+          </g>
+          <g class="a-box">
+            <rect x="680" y="48" width="210" height="70" rx="6"></rect>
+            <text class="a-name" x="785" y="78">CSV log</text>
+            <text class="a-sub" x="785" y="98">retrieved post-run</text>
+          </g>
+          <line class="a-line" x1="232" y1="83" x2="326" y2="83" marker-end="url(#arw)"></line>
+          <text class="a-tag" x="279" y="74">I2C</text>
+          <line class="a-line" x1="582" y1="83" x2="676" y2="83" marker-end="url(#arw)"></line>
+          <text class="a-tag" x="629" y="74">USB</text>
+
+          <g class="a-box">
+            <rect x="0" y="190" width="190" height="64" rx="6"></rect>
+            <text class="a-name" x="95" y="218">18650 cell</text>
+            <text class="a-sub" x="95" y="237">Li-ion</text>
+          </g>
+          <g class="a-box">
+            <rect x="250" y="190" width="190" height="64" rx="6"></rect>
+            <text class="a-name" x="345" y="218">TP4056</text>
+            <text class="a-sub" x="345" y="237">USB-C charge</text>
+          </g>
+          <g class="a-box">
+            <rect x="500" y="190" width="190" height="64" rx="6"></rect>
+            <text class="a-name" x="595" y="218">XC6206 LDO</text>
+            <text class="a-sub" x="595" y="237">3.3 V regulator</text>
+          </g>
+          <line class="a-line" x1="192" y1="222" x2="246" y2="222" marker-end="url(#arw)"></line>
+          <line class="a-line" x1="442" y1="222" x2="496" y2="222" marker-end="url(#arw)"></line>
+          <path class="a-line" d="M595,186 V154 H455 V124" marker-end="url(#arw)" fill="none"></path>
+          <text class="a-tag" x="527" y="146">3.3 V rail</text>
+
+          <g class="a-box a-key">
+            <rect x="950" y="48" width="250" height="140" rx="6"></rect>
+            <text class="a-name a-left" x="972" y="78">Shared core</text>
+            <text class="a-sub a-left" x="972" y="104">Same ESP32-S3 across both</text>
+            <text class="a-sub a-left" x="972" y="124">stages. Stage 2 adds only a</text>
+            <text class="a-sub a-left" x="972" y="144">CAN transceiver, no redesign.</text>
+          </g>
+
+          <line class="a-rule" x1="0" y1="300" x2="1200" y2="300"></line>
+
+          <!-- Stage 2 -->
+          <text class="a-stage a-future" x="0" y="348">STAGE 2</text>
+          <text class="a-note" x="96" y="348">Vehicle integration (architected, future)</text>
+
+          <g class="a-box">
+            <rect x="0" y="382" width="230" height="70" rx="6"></rect>
+            <text class="a-name" x="115" y="412">MLX90614</text>
+            <text class="a-sub" x="115" y="432">up to 3 per tyre</text>
+          </g>
+          <g class="a-box a-key">
+            <rect x="330" y="382" width="250" height="70" rx="6"></rect>
+            <text class="a-name" x="455" y="412">ESP32-S3 WROOM</text>
+            <text class="a-sub" x="455" y="432">CAN controller</text>
+          </g>
+          <g class="a-box">
+            <rect x="680" y="382" width="230" height="70" rx="6"></rect>
+            <text class="a-name" x="795" y="412">SN65HVD230</text>
+            <text class="a-sub" x="795" y="432">CAN transceiver</text>
+          </g>
+          <g class="a-box">
+            <rect x="1010" y="382" width="190" height="70" rx="6"></rect>
+            <text class="a-name" x="1105" y="412">Motec M150</text>
+            <text class="a-sub" x="1105" y="432">ECU</text>
+          </g>
+          <line class="a-line" x1="232" y1="417" x2="326" y2="417" marker-end="url(#arw)"></line>
+          <text class="a-tag" x="279" y="408">I2C</text>
+          <line class="a-line" x1="582" y1="417" x2="676" y2="417" marker-end="url(#arw)"></line>
+          <line class="a-line" x1="912" y1="417" x2="1006" y2="417" marker-end="url(#arw)"></line>
+          <text class="a-tag" x="959" y="408">CAN</text>
+          <line class="a-line" x1="1105" y1="456" x2="1105" y2="512" marker-end="url(#arw)"></line>
+          <g class="a-box">
+            <rect x="980" y="516" width="220" height="64" rx="6"></rect>
+            <text class="a-name" x="1090" y="544">Control system</text>
+            <text class="a-sub" x="1090" y="563">driver display</text>
+          </g>
+        </svg>
+        </div>
+        <figcaption>Architecture: Stage 1 standalone, Stage 2 into the ECU.</figcaption>
       </figure>
-      <figure>
-        <img class="seq-img" src="images/ttms_4_populated_board.jpeg" alt="The finished, fully populated board">
-        <figcaption>The finished, fully populated board.</figcaption>
+
+      <div class="c-full jrow">
+        <figure style="--ar: 1.45">
+          <img class="shot" src="images/tyre3.png" width="1585" height="1093" loading="lazy" decoding="async" alt="Stage 1 schematic screenshot from KiCad">
+          <figcaption>Schematic, KiCad.</figcaption>
+        </figure>
+        <figure style="--ar: 0.735">
+          <img class="shot" src="images/ttms_kicad_placement.jpg" width="1080" height="1470" loading="lazy" decoding="async" alt="KiCad PCB editor with every footprint placed and the antenna keep-out zone marked, before any routing">
+          <figcaption>Footprints placed, before routing.</figcaption>
+        </figure>
+        <figure style="--ar: 0.56">
+          <img class="shot" src="images/tyre4.png" width="417" height="744" loading="lazy" decoding="async" alt="Routed PCB layout for the Stage 1 tyre-temperature logging board">
+          <figcaption>Routed.</figcaption>
+        </figure>
+        <figure style="--ar: 0.586">
+          <img class="shot" src="images/ttms_pcb_back_tht.jpg" width="680" height="1160" loading="lazy" decoding="async" alt="Back of the finished board, showing through-hole solder joints for the connectors">
+          <figcaption>Back of the board: through-hole for parts like the connectors, which need to handle repeated unplugging.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ===== 03 Build ===== -->
+    <section class="board">
+      <div class="c1-7 stack">
+        <div>
+          <p class="board-num">03</p>
+          <h2 class="board-title">Build</h2>
+          <ul class="did-list">
+            <li>Learned manual pick-and-place myself to assemble the board.</li>
+            <li>Developed the firmware for sensor reading, CSV logging and USB retrieval. It logs data correctly, with a few things still to optimise.</li>
+          </ul>
+        </div>
+        <div class="jrow">
+          <figure style="--ar: 0.75">
+            <img class="shot" src="images/web/ttms_1_solder_paste_stencil.jpeg" width="1200" height="1600" loading="lazy" decoding="async" alt="Solder paste applied through the stencil">
+            <figcaption><span class="cap-label">01</span>Paste through the stencil.</figcaption>
+          </figure>
+          <figure style="--ar: 1">
+            <img class="shot" src="images/ttms_paste_applied.jpg" width="1500" height="2000" loading="lazy" decoding="async" alt="The bare board with solder paste applied and no components placed, held in the pick-and-place machine">
+            <figcaption><span class="cap-label">02</span>Pasted, no parts yet.</figcaption>
+          </figure>
+          <figure style="--ar: 0.75">
+            <img class="shot" src="images/web/ttms_2_manual_pick_and_place.jpeg" width="1200" height="1600" loading="lazy" decoding="async" alt="The manual pick-and-place machine with its microscope camera and monitor">
+            <figcaption><span class="cap-label">03</span>Manual pick-and-place.</figcaption>
+          </figure>
+        </div>
+        <div class="jrow">
+          <figure style="--ar: 0.75">
+            <img class="shot" src="images/web/ttms_3_reflow_oven.jpeg" width="1200" height="1600" loading="lazy" decoding="async" alt="The board going through the reflow oven">
+            <figcaption><span class="cap-label">05</span>Reflow.</figcaption>
+          </figure>
+          <figure style="--ar: 1; --pos: 50% 70%">
+            <img class="shot" src="images/web/ttms_4_populated_board.jpeg" width="1200" height="1600" loading="lazy" decoding="async" alt="The finished, fully populated board">
+            <figcaption><span class="cap-label">06</span>Fully populated.</figcaption>
+          </figure>
+          <figure style="--ar: 1">
+            <img class="shot" src="images/ttms_usbc_microscope.jpg" width="1500" height="2000" loading="lazy" decoding="async" alt="Close-up of the USB-C connector pins under the microscope">
+            <figcaption><span class="cap-label">07</span>USB-C pins under the microscope, checked for bridging and pad alignment.</figcaption>
+          </figure>
+        </div>
+      </div>
+      <figure class="c8-12 solo drop" style="--drop: 64px">
+        <img class="shot" style="--ar: 0.75" src="images/ttms_smt_placement.jpg" width="1500" height="2000" loading="lazy" decoding="async" alt="The board in the pick-and-place fixture part way through placing the SMT parts, with the ESP32-S3 module already down">
+        <figcaption><span class="cap-label">04</span>Part way through placing the SMT parts.</figcaption>
       </figure>
-    </div>
+    </section>
 
-    <!-- Section: Mounting and track testing -->
-    <p class="section-label">Mounting and track testing</p>
-    <ul class="did-list">
-      <li>Designed the housing to clip onto the car and take vibration and up to 2.5 G of lateral force: a sliding lid for access, and a two-bolt clamp with rubber padding that jacks tight against the mount point.</li>
-    </ul>
+    <!-- ===== 04 Mounting ===== -->
+    <section class="board">
+      <div class="c1-4 stack">
+        <div>
+          <p class="board-num">04</p>
+          <h2 class="board-title">Mounting</h2>
+          <ul class="did-list">
+            <li>Designed the housing to clip onto the car and take vibration and up to 2.5 G of lateral force.</li>
+            <li>Made rubber pads to sit between the clamp and the carbon aero, adding grip, damping vibration and protecting the carbon.</li>
+            <li>Moved the jacking bolts closer to the clamp's root after the first iteration pried itself open under load instead of clamping, and added wall loops and infill for stiffness.</li>
+          </ul>
+        </div>
+        <figure class="drop" style="--drop: 24px; width: 72%">
+          <img class="shot" src="images/ttms_heatset_inserts.jpg" width="1500" height="2000" loading="lazy" decoding="async" alt="The first iteration of the printed housing and clamp before assembly, showing brass heat-set inserts">
+          <figcaption>First iteration, with brass heat-set inserts for mounting.</figcaption>
+        </figure>
+      </div>
+      <div class="c5-12 jrow">
+        <figure style="--ar: 0.75; --w: 1">
+          <img class="shot" src="images/ttms_module_in_hand.jpg" width="1500" height="2000" loading="lazy" decoding="async" alt="The whole module held in one hand, lid open to show the battery and PCB, with the sensor mount on its cable">
+          <figcaption>About the size of a hand. Not debris-proof yet (that's pollen inside), which was fine for a dry-weather proof of concept.</figcaption>
+        </figure>
+        <figure class="drop" style="--ar: 0.75; --w: 0.8; --drop: 72px">
+          <img class="shot" src="images/web/tyre8.jpeg" width="1200" height="1600" loading="lazy" decoding="async" alt="The sensor nozzle aimed at the tyre, viewed from close to the wheel">
+          <figcaption>Sensor nozzle aimed at the tyre. It pivots, so the aim adjusts independently of the housing.</figcaption>
+        </figure>
+      </div>
+    </section>
 
-    <figure>
-      <img class="seq-img" src="images/tyre6.jpeg" alt="The housing open showing the internal PCB and battery, with the pivoting sensor assembly held up for scale">
-      <figcaption>The housing internals and sensor assembly, held up for scale.</figcaption>
-    </figure>
+    <!-- ===== 05 Track testing ===== -->
+    <section class="board">
+      <div class="c1-4 mid">
+        <p class="board-num">05</p>
+        <h2 class="board-title">Track testing</h2>
+        <ul class="did-list">
+          <li>Held on with no issues through the first round of track testing.</li>
+        </ul>
+        <p class="result-line">First track test produced clean, usable data: 99.8% valid over a 46-minute session at 5 Hz. With all three sensors live, a cleared drive holds around 4 hours at that rate.</p>
+      </div>
+      <figure class="c5-12">
+        <video class="clip" width="1080" height="720" autoplay muted loop playsinline controls preload="metadata" poster="images/ttms_track_run_poster.jpg" aria-label="The car running a coned course at speed with the TTMS module fitted">
+          <source src="images/ttms_track_run.mp4" type="video/mp4">
+        </video>
+        <figcaption>On track with the module fitted: the speed and cornering it had to hold on through.</figcaption>
+      </figure>
 
-    <ul class="did-list">
-      <li>3D printed a separate mount for the sensor using the same clip-on approach, with a pivoting nozzle so the aim can be adjusted independently of the housing.</li>
-      <li>Fitted both to the car and ran the system standalone off the board's own battery, with no tie into the car's electrical system.</li>
-    </ul>
+      <figure class="c1-7 solo">
+        <img class="shot" style="--ar: 1.152" src="images/tyre9.png" width="1491" height="1294" loading="lazy" decoding="async" alt="Screenshot of the TTMS Log Viewer: a tyre-temperature session plotted with raw and 1-second median filter traces, ambient overlay, and a per-channel data quality table">
+        <figcaption>Log viewer I built to check data quality between sessions.</figcaption>
+      </figure>
+      <div class="c8-12 stack mid">
+        <table class="spec">
+          <caption>Logging capacity, all three sensors live</caption>
+          <thead>
+            <tr><th scope="col">Rate</th><th scope="col">Per hour</th><th scope="col">Cleared drive (~3.6 MB)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1 Hz</td><td>176 KB</td><td>~20 hr</td></tr>
+            <tr class="current"><td>5 Hz (current)</td><td>879 KB</td><td>~4.1 hr</td></tr>
+            <tr><td>20 Hz</td><td>3.4 MB</td><td>~64 min</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-    <figure>
-      <img class="seq-img" src="images/tyre7.jpeg" alt="The housing and sensor mount clipped onto the car next to the tyre">
-      <figcaption>Both mounts clipped onto the car, ready for track testing.</figcaption>
-    </figure>
-
-    <ul class="did-list">
-      <li>Held on with no issues through the first round of track testing.</li>
-      <li>First test returned clean, usable data: a 46-minute session at 5 Hz, tyre temperature ranging 20.6°C to 86.1°C, with only 0.2% of samples flagged, all during the initial power-up.</li>
-      <li>Built an offline log viewer to check data quality between and after sessions: drag-and-drop CSV loading, toggleable ambient and rolling-median-filter overlays, and per-channel quality stats.</li>
-      <li>Calculated that USB mass storage supports around 5 hours of continuous logging at 5 Hz, comfortably covering a full test session.</li>
-    </ul>
-
-    <figure>
-      <img class="seq-img" src="images/tyre8.jpeg" alt="The sensor nozzle aimed at the tyre, viewed from close to the wheel">
-      <figcaption>The sensor's-eye view: nozzle aimed at the tyre.</figcaption>
-    </figure>
-
-    <figure>
-      <img class="seq-img" src="images/tyre9.png" alt="Screenshot of the TTMS Log Viewer: a tyre-temperature session plotted with raw and 1-second median filter traces, ambient overlay, and a per-channel data quality table">
-      <figcaption>The log viewer: raw vs median-filtered data, ambient overlay, and per-channel quality stats.</figcaption>
-    </figure>
-
-    <!-- Result line -->
-    <p class="result-line">First track test produced clean, usable data: 99.8% valid over a 46-minute session at 5 Hz, refined with a rolling median filter. The system can log continuously for around 5 hours on USB mass storage.</p>
-
-    <!-- Learned -->
-    <p class="section-label">Learned</p>
-    <ul class="did-list">
-      <li>I learned to check a part choice against every domain it affects. Here that meant confirming firmware support existed before locking in the MCU variant.</li>
-      <li>I learned to gauge how far to design ahead. Extra sensor connectors were cheap, low-risk insurance for a stage that isn't scoped yet. A full CAN circuit would have been overreach at this stage, especially while I was still building PCB experience.</li>
-    </ul>
-
-    <a class="back-link" href="projects.html">&larr; Back to projects</a>
+    <!-- ===== Learned ===== -->
+    <section class="board closing">
+      <div class="c-full">
+        <h2 class="board-title">Learned</h2>
+        <ul class="did-list two-col">
+          <li>Check a part choice against every domain it affects. Here that meant confirming firmware support existed before locking in the microcontroller variant.</li>
+          <li>Gauge how far to design ahead. Extra sensor connectors were cheap, low-risk insurance for a stage that isn't scoped yet. A full CAN circuit would have been overreach, especially while I was still building PCB experience.</li>
+        </ul>
+      </div>
+      <a class="back-link c-full" href="projects.html">&larr; Back to projects</a>
+    </section>
 
   </main>
+
 
 </body>
 </html>

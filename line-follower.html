@@ -11,195 +11,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <style>
-    /* ---------- Colour system (from the design note) ---------- */
-    :root {
-      --bg:        #0F1216;
-      --panel:     #171B21;
-      --hairline:  #2A2F37;
-      --text:      #E8EAED;
-      --muted:     #9BA1A9;
-      --navy:      #1F3864;
-      --accent:    #E0A24A;
-      --maxw: 1200px;
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Hanken Grotesk", sans-serif;
-      font-weight: 400;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
-
-    /* ---------- Top bar (shared on every page) ---------- */
-    .topbar { border-bottom: 1px solid var(--hairline); }
-    .topbar-inner {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 22px 32px;
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .wordmark {
-      font-family: "Archivo", sans-serif;
-      font-weight: 700;
-      font-size: 18px;
-      letter-spacing: 0.02em;
-    }
-    .nav {
-      display: flex;
-      gap: 28px;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .nav a:hover { color: var(--text); }
-    .nav a.active { color: var(--text); }
-
-    /* ---------- Detail page ---------- */
-    .detail {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 48px 32px 90px;
-    }
-
-    .detail-category {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 0 0 14px;
-    }
-    .detail-title {
-      font-family: "Archivo", sans-serif;
-      font-weight: 700;
-      font-size: clamp(32px, 5vw, 52px);
-      line-height: 1.05;
-      letter-spacing: -0.01em;
-      margin: 0 0 32px;
-    }
-
-    /* detail-page media: fill the column, whole image shown, capped at ~80vh,
-       left-aligned to the column edge. No full-bleed, no box. */
-    figure { margin: 0 0 40px; }
-    .lead-figure { margin: 0 0 40px; }
-    .lead-img,
-    .seq-img {
-      display: block;
-      width: 100%;
-      height: auto;
-      max-height: 80vh;
-      object-fit: contain;
-      margin: 0;
-      background: none;
-      border: 0;
-    }
-    /* lead video, same sizing rules as the images */
-    .lead-video {
-      display: block;
-      width: 100%;
-      height: auto;
-      max-height: 80vh;
-      margin: 0;
-    }
-    figcaption {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 14px;
-      letter-spacing: 0.02em;
-      line-height: 1.45;
-      color: var(--text);
-      max-width: 100%;
-      margin: 10px 0 0;
-    }
-
-    /* standfirst */
-    .standfirst {
-      font-size: clamp(18px, 2vw, 21px);
-      line-height: 1.55;
-      color: var(--text);
-      max-width: 100%;
-      margin: 0 0 44px;
-    }
-
-    /* section label, mono */
-    .section-label {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin: 0 0 18px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--hairline);
-      max-width: 100%;
-    }
-
-    /* section list */
-    .did-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 44px;
-      max-width: 100%;
-    }
-    .did-list li {
-      position: relative;
-      padding-left: 22px;
-      margin-bottom: 16px;
-      font-size: 16.5px;
-      line-height: 1.55;
-      color: var(--text);
-    }
-    .did-list li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 11px;
-      width: 7px;
-      height: 1px;
-      background: var(--accent);
-    }
-
-    /* bold result line, skim anchor */
-    .result-line {
-      font-family: "Archivo", sans-serif;
-      font-weight: 600;
-      font-size: clamp(19px, 2.2vw, 23px);
-      line-height: 1.35;
-      color: var(--accent);
-      max-width: 100%;
-      margin: 0 0 44px;
-      padding: 22px 0 22px 22px;
-      border-left: 2px solid var(--accent);
-    }
-
-    /* learned paragraph */
-    .learned {
-      font-size: 16.5px;
-      line-height: 1.6;
-      color: var(--text);
-      max-width: 100%;
-      margin: 0 0 60px;
-    }
-
-    .back-link {
-      display: inline-block;
-      margin-top: 56px;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .back-link:hover { color: var(--accent); }
-  </style>
-
+  <link rel="stylesheet" href="boards.css">
   <link rel="stylesheet" href="motion.css">
   <script src="motion.js" defer></script>
+  <script src="boards.js" defer></script>
 </head>
 <body>
 
@@ -215,76 +30,99 @@
     </div>
   </header>
 
-  <main class="detail">
+  <main class="page">
 
-    <p class="detail-category">Mechanical Design / Controls</p>
-    <h1 class="detail-title">Line Follower Robot</h1>
+    <!-- ===== Hero ===== -->
+    <section class="board hero">
+      <div class="c1-6">
+        <p class="detail-category">Mechanical Design / Controls</p>
+        <h1 class="detail-title">Line Follower Robot</h1>
+        <p class="standfirst">A five-person team designed and built the robot from scratch: PCB, sensors, control code and the full mechanical platform.</p>
+        <dl class="facts">
+          <div><dt>My part</dt><dd>Mechanical design and build: chassis, drivetrain, braking and the test setup, plus on-track tuning</dd></div>
+          <div><dt>Built</dt><dd>3D-printed PLA chassis, two-stage 22:1 gearbox, cast silicone tyres</dd></div>
+          <div><dt>Result</dt><dd>Third on race day, 6.150s lap, 0.14s off first</dd></div>
+        </dl>
+      </div>
+      <figure class="c7-12 hero-media">
+        <img class="shot" src="images/linefollower1.png" width="528" height="426" alt="The finished line follower robot as raced">
+        <figcaption>The robot as raced.</figcaption>
+      </figure>
+    </section>
 
-    <!-- Intro paragraph -->
-    <p class="standfirst">A five-person team designed and built the robot from scratch: PCB, sensors, control code and the full mechanical platform. I led the mechanical design and build, the chassis, drivetrain, braking and the test setup, and was closely involved in the on-track tuning.</p>
+    <!-- ===== 01 The braking problem ===== -->
+    <section class="board">
+      <div class="c1-4 mid">
+        <p class="board-num">01</p>
+        <h2 class="board-title">The braking problem</h2>
+        <ul class="did-list">
+          <li>The PCB's H-bridge didn't work, so the robot had no active braking. It coasted into corners and overshot, which capped usable power at about 15% duty cycle.</li>
+          <li>Built a mechanical brake from tensioned rubber bands, set so the band tension matched motor power. That let the robot run full power and still hold the corners.</li>
+        </ul>
+      </div>
+      <div class="c5-12 jrow">
+        <figure style="--ar: 1.778">
+          <img class="shot" src="images/linefollower3.jpg" width="1280" height="720" loading="lazy" decoding="async" alt="KiCad PCB layout for the line follower robot: motor driver H-bridge, sensor input headers, ATmega4808 MCU, and push-button/LED user interface">
+          <figcaption>The robot's PCB: motor driver with H-bridge, sensor input, MCU and onboard UI.</figcaption>
+        </figure>
+        <figure style="--ar: 0.859">
+          <img class="shot" src="images/Screenshot%202026-06-29%20195452.png" width="867" height="1009" loading="lazy" decoding="async" alt="Rubber-band brake on the drive axle">
+          <figcaption>Rubber-band brake on the drive axle. Tension tuned to match motor power.</figcaption>
+        </figure>
+      </div>
+    </section>
 
-    <!-- Lead image: the robot as raced -->
-    <figure class="lead-figure">
-      <img class="lead-img" src="images/linefollower1.png" alt="The finished line follower robot as raced">
-      <figcaption>The robot as raced.</figcaption>
-    </figure>
+    <!-- ===== 02 The build ===== -->
+    <section class="board">
+      <div class="c1-4 mid">
+        <p class="board-num">02</p>
+        <h2 class="board-title">The build</h2>
+        <ul class="did-list">
+          <li>Designed and 3D-printed the PLA chassis, iterating across 20-plus layouts to cut printed mass to around 35 to 40 g while keeping it stiff.</li>
+          <li>Set a 115 mm track width and 55/45 weight distribution for predictable cornering, and built a two-stage 22:1 gearbox with cast silicone tyres for grip off the corners.</li>
+          <li>Swapped the supplied axle rods for M3 shanked bolts on a dual-bearing setup to remove play and friction.</li>
+          <li>Finished the mechanical build before the electronics arrived, so race week was just placement and fine-tuning.</li>
+        </ul>
+      </div>
+      <div class="c5-12 jrow">
+        <figure class="drop" style="--ar: 1.271; --w: 0.75; --drop: 40px">
+          <img class="shot" src="images/linefollower2.png" width="408" height="321" loading="lazy" decoding="async" alt="Exploded assembly of the line follower robot, all structural parts 3D-printed in PLA">
+          <figcaption>Exploded assembly. All structural parts 3D-printed in PLA.</figcaption>
+        </figure>
+        <figure style="--ar: 0.911">
+          <img class="shot" src="images/Screenshot%202026-06-29%20195440.png" width="757" height="831" loading="lazy" decoding="async" alt="3D-printed moulds for casting the silicone tyres">
+          <figcaption>3D-printed moulds for casting the silicone tyres.</figcaption>
+        </figure>
+      </div>
+    </section>
 
-    <!-- Section: The braking problem -->
-    <p class="section-label">The braking problem</p>
-    <p class="learned">The PCB's H-bridge didn't work, so the robot had no active braking. It coasted into corners and overshot, which capped usable power at about 15% duty cycle. I built a mechanical brake from tensioned rubber bands, set so the band tension matched motor power. That let the robot run full power and still hold the corners.</p>
+    <!-- ===== 03 Testing ===== -->
+    <section class="board">
+      <div class="c1-4 mid">
+        <p class="board-num">03</p>
+        <h2 class="board-title">Testing</h2>
+        <ul class="did-list">
+          <li>Built a replica of the competition track in my garage to test in private, protecting the design from other teams and avoiding congestion on the shared lab track.</li>
+        </ul>
+        <p class="result-line">Set a practice lap quick enough to have won the event. Finished third on race day with a 6.150s lap, 0.14s off first, after a late motor failure.</p>
+      </div>
+      <figure class="c5-12" style="width: 60%">
+        <img class="shot" style="--ar: 0.891" src="images/Screenshot%202026-06-29%20195512.png" width="808" height="907" loading="lazy" decoding="async" alt="Replica competition track built at home for repeatable testing">
+        <figcaption>Replica competition track I built at home for repeatable testing.</figcaption>
+      </figure>
+    </section>
 
-    <!-- Image: the PCB -->
-    <figure>
-      <img class="seq-img" src="images/linefollower3.jpg" alt="KiCad PCB layout for the line follower robot: motor driver H-bridge, sensor input headers, ATmega4808 MCU, and push-button/LED user interface">
-      <figcaption>The robot's PCB: motor driver with H-bridge, sensor input, MCU and onboard UI.</figcaption>
-    </figure>
-
-    <!-- Image: rubber-band brake -->
-    <figure>
-      <img class="seq-img" src="images/Screenshot%202026-06-29%20195452.png" alt="Rubber-band brake on the drive axle">
-      <figcaption>Rubber-band brake on the drive axle. Tension tuned to match motor power.</figcaption>
-    </figure>
-
-    <!-- Section: The build -->
-    <p class="section-label">The build</p>
-    <ul class="did-list">
-      <li>Designed and 3D-printed the PLA chassis, iterating across 20-plus layouts to cut printed mass to around 35 to 40g while keeping it stiff.</li>
-      <li>Set a 115mm track width and 55/45 weight distribution for predictable cornering.</li>
-      <li>Built a two-stage 22:1 gearbox and cast silicone tyres for grip off the corners.</li>
-      <li>Swapped the supplied axle rods for M3 shanked bolts on a dual-bearing setup to remove play and friction.</li>
-      <li>Finished the mechanical build before the electronics arrived, so race week was just placement and fine-tuning.</li>
-    </ul>
-
-    <!-- Image: exploded CAD -->
-    <figure>
-      <img class="seq-img" src="images/linefollower2.png" alt="Exploded assembly of the line follower robot, all structural parts 3D-printed in PLA">
-      <figcaption>Exploded assembly. All structural parts 3D-printed in PLA.</figcaption>
-    </figure>
-
-    <!-- Image: silicone tyre moulds -->
-    <figure>
-      <img class="seq-img" src="images/Screenshot%202026-06-29%20195440.png" alt="3D-printed moulds for casting the silicone tyres">
-      <figcaption>3D-printed moulds for casting the silicone tyres.</figcaption>
-    </figure>
-
-    <!-- Section: Testing -->
-    <p class="section-label">Testing</p>
-    <p class="learned">Built a replica of the competition track in my garage to test in private, protecting the design from other teams and avoiding congestion on the shared lab track.</p>
-
-    <!-- Image: replica competition track -->
-    <figure>
-      <img class="seq-img" src="images/Screenshot%202026-06-29%20195512.png" alt="Replica competition track built at home for repeatable testing">
-      <figcaption>Replica competition track I built at home for repeatable testing.</figcaption>
-    </figure>
-
-    <!-- Result line -->
-    <p class="result-line">Set a practice lap quick enough to have won the event. Finished third on race day with a 6.150s lap, 0.14s off first, after a late motor failure.</p>
-
-    <!-- Learned -->
-    <p class="section-label">Learned</p>
-    <p class="learned">A dead H-bridge could have sunk the project. Instead it forced improvisation on both sides: a stripped-back motor driver to get the robot running, then the brake and the mechanical work to make it quick. The lesson stuck with me. When time is tight, a fix you can build and test beats a perfect one you can't finish.</p>
-
-    <a class="back-link" href="projects.html">&larr; Back to projects</a>
+    <!-- ===== Learned ===== -->
+    <section class="board closing">
+      <div class="c-full">
+        <h2 class="board-title">Learned</h2>
+        <ul class="did-list two-col">
+          <li>A dead H-bridge could have sunk the project. Instead it forced improvisation on both sides: a stripped-back motor driver to get the robot running, then the brake and the mechanical work to make it quick.</li>
+          <li>When time is tight, a fix you can build and test beats a perfect one you can't finish.</li>
+        </ul>
+      </div>
+      <a class="back-link c-full" href="projects.html">&larr; Back to projects</a>
+    </section>
 
   </main>
 

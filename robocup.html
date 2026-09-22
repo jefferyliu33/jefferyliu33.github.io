@@ -11,195 +11,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <style>
-    /* ---------- Colour system (from the design note) ---------- */
-    :root {
-      --bg:        #0F1216;
-      --panel:     #171B21;
-      --hairline:  #2A2F37;
-      --text:      #E8EAED;
-      --muted:     #9BA1A9;
-      --navy:      #1F3864;
-      --accent:    #E0A24A;
-      --maxw: 1200px;
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Hanken Grotesk", sans-serif;
-      font-weight: 400;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
-
-    /* ---------- Top bar (shared on every page) ---------- */
-    .topbar { border-bottom: 1px solid var(--hairline); }
-    .topbar-inner {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 22px 32px;
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .wordmark {
-      font-family: "Archivo", sans-serif;
-      font-weight: 700;
-      font-size: 18px;
-      letter-spacing: 0.02em;
-    }
-    .nav {
-      display: flex;
-      gap: 28px;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .nav a:hover { color: var(--text); }
-    .nav a.active { color: var(--text); }
-
-    /* ---------- Detail page ---------- */
-    .detail {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 48px 32px 90px;
-    }
-
-    .detail-category {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 0 0 14px;
-    }
-    .detail-title {
-      font-family: "Archivo", sans-serif;
-      font-weight: 700;
-      font-size: clamp(32px, 5vw, 52px);
-      line-height: 1.05;
-      letter-spacing: -0.01em;
-      margin: 0 0 32px;
-    }
-
-    /* detail-page media: fill the column, whole image shown, capped at ~80vh,
-       left-aligned to the column edge. No full-bleed, no box. */
-    figure { margin: 0 0 40px; }
-    .lead-figure { margin: 0 0 40px; }
-    .lead-img,
-    .seq-img {
-      display: block;
-      width: 100%;
-      height: auto;
-      max-height: 80vh;
-      object-fit: contain;
-      margin: 0;
-      background: none;
-      border: 0;
-    }
-    /* lead video, same sizing rules as the images */
-    .lead-video {
-      display: block;
-      width: 100%;
-      height: auto;
-      max-height: 80vh;
-      margin: 0;
-    }
-    figcaption {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 14px;
-      letter-spacing: 0.02em;
-      line-height: 1.45;
-      color: var(--text);
-      max-width: 100%;
-      margin: 10px 0 0;
-    }
-
-    /* standfirst */
-    .standfirst {
-      font-size: clamp(18px, 2vw, 21px);
-      line-height: 1.55;
-      color: var(--text);
-      max-width: 100%;
-      margin: 0 0 44px;
-    }
-
-    /* section label, mono */
-    .section-label {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin: 0 0 18px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--hairline);
-      max-width: 100%;
-    }
-
-    /* section list */
-    .did-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 44px;
-      max-width: 100%;
-    }
-    .did-list li {
-      position: relative;
-      padding-left: 22px;
-      margin-bottom: 16px;
-      font-size: 16.5px;
-      line-height: 1.55;
-      color: var(--text);
-    }
-    .did-list li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 11px;
-      width: 7px;
-      height: 1px;
-      background: var(--accent);
-    }
-
-    /* bold result line, skim anchor */
-    .result-line {
-      font-family: "Archivo", sans-serif;
-      font-weight: 600;
-      font-size: clamp(19px, 2.2vw, 23px);
-      line-height: 1.35;
-      color: var(--accent);
-      max-width: 100%;
-      margin: 0 0 44px;
-      padding: 22px 0 22px 22px;
-      border-left: 2px solid var(--accent);
-    }
-
-    /* learned paragraph */
-    .learned {
-      font-size: 16.5px;
-      line-height: 1.6;
-      color: var(--text);
-      max-width: 100%;
-      margin: 0 0 60px;
-    }
-
-    .back-link {
-      display: inline-block;
-      margin-top: 56px;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .back-link:hover { color: var(--accent); }
-  </style>
-
+  <link rel="stylesheet" href="boards.css">
   <link rel="stylesheet" href="motion.css">
   <script src="motion.js" defer></script>
+  <script src="boards.js" defer></script>
 </head>
 <body>
 
@@ -215,124 +30,120 @@
     </div>
   </header>
 
-  <main class="detail">
+  <main class="page">
 
-    <p class="detail-category">Robotics / Mechanical design</p>
-    <h1 class="detail-title">RoboCup Collection Robot</h1>
+    <!-- ===== Hero ===== -->
+    <section class="board hero">
+      <div class="c1-6">
+        <p class="detail-category">Robotics / Mechanical design</p>
+        <h1 class="detail-title">RoboCup Collection Robot</h1>
+        <p class="standfirst">A collection robot our team, Backyard Mechanics, is building for RoboCup. It drives up to weights on the floor and a rotating drum sweeps them up a ramp and into the robot. I proposed the drum intake the team chose, set out the general arrangement, and built a rough proof of concept before we committed to it.</p>
+        <dl class="facts">
+          <div><dt>My part</dt><dd>The drum intake: concept, prototype, two build iterations and testing</dd></div>
+          <div><dt>Chosen by</dt><dd>The team's weighted decision matrix, 4.77 against 4.00 and 3.71</dd></div>
+          <div><dt>Status</dt><dd>In progress. Sorting, storage and return-to-base still to build and test</dd></div>
+        </dl>
+      </div>
+      <figure class="c7-12 hero-media">
+        <img class="shot" src="images/robocup_full_assembly.jpeg" width="700" height="490" alt="The fully assembled RoboCup collection robot on its competition chassis">
+        <figcaption>The robot as it stands, fully assembled on the competition chassis.</figcaption>
+      </figure>
+    </section>
 
-    <!-- Standfirst -->
-    <p class="standfirst">A collection robot our team, Backyard Mechanics, is building for RoboCup. It drives up to weights on the floor and a rotating drum sweeps them up a ramp and into the robot. I proposed the drum intake the team chose, set out the general arrangement, and built a rough proof of concept before we committed to it. The robot is now built on the competition kit chassis and picks up weights on the arena floor.</p>
+    <!-- ===== 01 Concept and architecture ===== -->
+    <section class="board">
+      <div class="c1-4 mid">
+        <p class="board-num">01</p>
+        <h2 class="board-title">Concept and architecture</h2>
+        <ul class="did-list">
+          <li>Proposed the drum: it spins, and the flaps sweep each weight off the floor and up a fixed ramp into the robot. Strongest on throughput and traversal in the team's matrix.</li>
+          <li>Kept it deliberately simple, with few moving parts and easy to build and maintain.</li>
+          <li>Using the given competition kit for the major parts and proving every system on that chassis first. The drum intake, sorting mechanism and drive wheels are ours.</li>
+        </ul>
+      </div>
+      <div class="c5-12 jrow">
+        <figure style="--ar: 1.355">
+          <img class="shot" src="images/robocup1.png" width="1328" height="980" loading="lazy" decoding="async" alt="Hand-drawn concept sketch of the whole robot with the drum intake at the front">
+          <figcaption>Early concept sketch, drum intake at the front.</figcaption>
+        </figure>
+        <figure style="--ar: 1.71">
+          <img class="shot" src="images/Screenshot%202026-06-29%20003506.png" width="2028" height="1186" loading="lazy" decoding="async" alt="Hand-drawn simplified overhead view showing two positions, fake and real weights">
+          <figcaption>Overhead arrangement: drum intake, sorting to keep the real weights and reject the dummies, then ejection. The team is building to this layout.</figcaption>
+        </figure>
+        <figure style="--ar: 0.75">
+          <img class="shot" src="images/web/IMG_2096.jpg" width="1200" height="1600" loading="lazy" decoding="async" alt="The given tracked competition chassis with metal top plate, timing-belt tracks and two motors">
+          <figcaption>The given competition drivetrain, default setup.</figcaption>
+        </figure>
+      </div>
+    </section>
 
-    <!-- Lead image -->
-    <figure class="lead-figure">
-      <img class="lead-img" src="images/robocup_full_assembly.jpeg" alt="The fully assembled RoboCup collection robot on its competition chassis">
-      <figcaption>The robot as it stands, fully assembled on the competition chassis.</figcaption>
-    </figure>
+    <!-- ===== 02 Proof of concept ===== -->
+    <section class="board">
+      <div class="c1-4 mid">
+        <p class="board-num">02</p>
+        <h2 class="board-title">Proof of concept</h2>
+        <ul class="did-list">
+          <li>Sourced hardware-store parts, 3D printed the drum and flaps, and assembled a rough proof of concept in an afternoon.</li>
+          <li>A combine-harvester style intake had been done before, but not the rubber-flap version. Teammates were leaning towards an electromagnet intake, so proving the flap drum worked settled the direction.</li>
+        </ul>
+      </div>
+      <div class="c5-12 jrow">
+        <figure style="--ar: 0.75">
+          <img class="shot" src="images/web/IMG_2132.jpg" width="1200" height="1600" loading="lazy" decoding="async" alt="The 3D-printed proof-of-concept drum with rubber flaps mounted between two motors on a blue bench">
+          <figcaption>The proof-of-concept drum: 3D-printed axle, off-the-shelf rubber flaps, two motors.</figcaption>
+        </figure>
+        <figure style="--ar: 1.067">
+          <img class="shot" src="images/robocup2.png" width="760" height="712" loading="lazy" decoding="async" alt="Two hands holding a red-framed test rig with the black flap drum pressing around a weight">
+          <figcaption>The flap deforms around the weight and grips it, rather than just shoving it.</figcaption>
+        </figure>
+        <figure style="--ar: 1.778">
+          <video class="clip" width="1024" height="576" muted loop playsinline controls preload="metadata" aria-label="Bench test of the drum capturing a weight">
+            <source src="images/robocup-drum-test.mp4" type="video/mp4">
+          </video>
+          <figcaption>Bench testing the drum capturing a weight. Tested on a scrap-bin ramp steeper and rougher than the real one, as a worst case.</figcaption>
+        </figure>
+      </div>
+    </section>
 
-    <!-- Section: Concept and architecture -->
-    <p class="section-label">Concept and architecture</p>
-    <ul class="did-list">
-      <li>Proposed a rotating drum with rubber flaps as the intake: the drum spins and the flaps sweep each weight off the floor and up a fixed ramp into the robot. The team picked it to run with, scoring highest in the weighted decision matrix (4.77 vs 4.00 and 3.71), strongest on throughput and traversal.</li>
-      <li>Kept the mechanism deliberately simple, few moving parts and easy to build and maintain, which keeps the final design reliable rather than fragile or over-complicated.</li>
-      <li>A combine-harvester style intake had been done before, but not the rubber-flap version, partly because the rules this year restricted elastomeric materials above an aspect ratio of 5. Teammates were leaning towards an electromagnet-based intake, so proving the flap drum worked, and was not over-complicated, settled the direction.</li>
-    </ul>
+    <!-- ===== 03 Build ===== -->
+    <section class="board">
+      <div class="c1-4 mid">
+        <p class="board-num">03</p>
+        <h2 class="board-title">Build</h2>
+        <ul class="did-list">
+          <li>Refined the drum through two iterations: six pinned flaps became three centrally clamped flaps to stop them working loose, and the drive motor was swapped for a lower-speed, higher-torque unit after the original stalled under load.</li>
+          <li>Ran a Fault Tree Analysis that shaped two design decisions: stiffened flaps against over-deflection, and the motor change.</li>
+          <li>Sorting, storage and return-to-base logic still to be built and tested; on track for final assessment.</li>
+        </ul>
+        <p class="result-line">Structured testing found the next fix early: stiffen the flaps to stop over-deflection under the heaviest load, avoiding time-consuming guesswork.</p>
+      </div>
+      <div class="c5-12 jrow">
+        <figure style="--ar: 1.929">
+          <img class="shot" src="images/robocup_drum_exploded_view.jpeg" width="629" height="326" loading="lazy" decoding="async" alt="Labelled CAD exploded view of the drum subassembly: coupler, motor mount, flap clamp, rubber flap, rod end and motor">
+          <figcaption>Drum subassembly after the second iteration: three centrally clamped flaps.</figcaption>
+        </figure>
+        <figure style="--ar: 1.25">
+          <img class="shot" src="images/robocup_collection_mechanism.jpeg" width="679" height="543" loading="lazy" decoding="async" alt="The collection mechanism shown next to a weight for scale">
+          <figcaption>The collection mechanism with a test weight for scale. 7 of 10 trials succeeded in 2 to 7 seconds; the failures traced to edge-slip and a flat battery.</figcaption>
+        </figure>
+        <figure style="--ar: 0.912">
+          <img class="shot" src="images/robocup_sorting_concept_A.png" width="527" height="578" loading="lazy" decoding="async" alt="Hand-drawn concept sketch for the revised sorting mechanism">
+          <figcaption>Revised sorting concept, still to be built.</figcaption>
+        </figure>
+      </div>
+    </section>
 
-    <!-- Image: concept sketch -->
-    <figure>
-      <img class="seq-img" src="images/robocup1.png" alt="Hand-drawn concept sketch of the whole robot with the drum intake at the front">
-      <figcaption>Early concept sketch, with the drum intake at the front of the robot.</figcaption>
-    </figure>
-
-    <ul class="did-list">
-      <li>Set out the general arrangement in an overhead diagram: the drum intake, a sorting stage to keep the real weights and reject the dummies, and the ejection path. The team is building to that layout.</li>
-    </ul>
-
-    <!-- Image: overhead arrangement diagram -->
-    <figure>
-      <img class="seq-img" src="images/Screenshot%202026-06-29%20003506.png" alt="Hand-drawn simplified overhead view showing two positions, fake and real weights">
-      <figcaption>Simplified overhead view of the arrangement: drum intake, sorting, and ejection.</figcaption>
-    </figure>
-
-    <ul class="did-list">
-      <li>Using the given competition kit for the major parts, side plates, beams, motors, sensors, battery, motor driver and controller, and proving every system on that chassis first. Custom side plates are planned if there's time, to tighten the packaging and make the whole thing more compact. The drum intake, sorting mechanism and drive wheels are ours.</li>
-    </ul>
-
-    <!-- Image: given competition chassis -->
-    <figure>
-      <img class="seq-img" src="images/IMG_2096.jpeg" alt="The given tracked competition chassis with metal top plate, timing-belt tracks and two motors">
-      <figcaption>The given competition drivetrain in its default setup.</figcaption>
-    </figure>
-
-    <!-- Section: Proof of concept -->
-    <p class="section-label">Proof of concept</p>
-    <ul class="did-list">
-      <li>Sourced hardware-store parts, 3D printed the drum and flaps, and assembled a rough proof of concept in an afternoon.</li>
-    </ul>
-
-    <!-- Image: proof-of-concept drum -->
-    <figure>
-      <img class="seq-img" src="images/IMG_2132.jpeg" alt="The 3D-printed proof-of-concept drum with rubber flaps mounted between two motors on a blue bench">
-      <figcaption>The proof-of-concept drum: 3D-printed axle, off-the-shelf rubber flaps, two motors.</figcaption>
-    </figure>
-
-    <ul class="did-list">
-      <li>Tested it on a scrap-bin ramp, steeper, taller, rougher and narrower at the top than the one we plan to use, so it stood in for a worst case. The drum still dragged the weights up, which said the real ramp should be easier.</li>
-      <li>Watched the flaps deform around each weight as the drum turned, which is what grips and lifts it rather than just shoving it.</li>
-    </ul>
-
-    <!-- Image: flaps deforming around a weight -->
-    <figure>
-      <img class="seq-img" src="images/robocup2.png" alt="Two hands holding a red-framed test rig with the black flap drum pressing around a weight">
-      <figcaption>The flap mid-deformation, gripping the weight before it clears the ramp.</figcaption>
-    </figure>
-
-    <figure>
-      <video class="lead-video" controls muted loop playsinline preload="metadata">
-        <source src="images/robocup-drum-test.mp4" type="video/mp4">
-        <source src="images/3E7C5CCF-1AC9-4046-AE78-061AA36AC2DD.MOV" type="video/quicktime">
-        Your browser does not support the video tag.
-      </video>
-      <figcaption>Bench testing the drum capturing a weight.</figcaption>
-    </figure>
-
-    <!-- Section: Build -->
-    <p class="section-label">Build</p>
-    <ul class="did-list">
-      <li>Refined the drum through two iterations: moved from six pinned flaps to three centrally clamped flaps to stop them working loose, and swapped the drive motor for a lower-speed, higher-torque unit after the original stalled under load.</li>
-    </ul>
-
-    <figure>
-      <img class="seq-img" src="images/robocup_drum_exploded_view.jpeg" alt="Labelled CAD exploded view of the drum subassembly: coupler, motor mount, flap clamp, rubber flap, rod end and motor">
-      <figcaption>Exploded view of the drum subassembly after the second iteration: three centrally clamped flaps.</figcaption>
-    </figure>
-
-    <ul class="did-list">
-      <li>Validated collection on the heaviest test weight: 7 of 10 trials succeeded in 2 to 7 seconds; the failures traced to edge-slip and a flat battery, both now scoped as fixes.</li>
-    </ul>
-
-    <figure>
-      <img class="seq-img" src="images/robocup_collection_mechanism.jpeg" alt="The collection mechanism shown next to a weight for scale">
-      <figcaption>The collection mechanism, shown with a test weight for scale.</figcaption>
-    </figure>
-
-    <ul class="did-list">
-      <li>Ran a Fault Tree Analysis that directly shaped two design decisions: stiffened flaps to stop over-deflection under the heaviest load, and lower-speed, higher-torque motors.</li>
-      <li>Sorting, storage and return-to-base logic still to be built and tested; on track for final assessment.</li>
-    </ul>
-
-    <figure>
-      <img class="seq-img" src="images/robocup_sorting_concept_A.png" alt="Hand-drawn concept sketch for the revised sorting mechanism">
-      <figcaption>Revised concept sketch for the sorting mechanism, still to be built.</figcaption>
-    </figure>
-
-    <!-- Result line -->
-    <p class="result-line">Structured testing found the next fix early: stiffen the flaps to stop over-deflection under the heaviest load, avoiding time-consuming guesswork.</p>
-
-    <!-- Learned -->
-    <p class="section-label">Learned</p>
-    <p class="learned">Learned that a rough prototype settles an argument faster than talking does. Two of us wanted different intakes, and building the simplest version that could prove or kill the idea was quicker than debating it. The proof of concept was scrap-bin parts and basic geometry, but it answered the one thing that mattered, could the drum lift a weight up the ramp, before anyone spent real time making it neat. I like working that way: build the simplest thing that proves the idea, put it in front of people, then refine.</p>
-
-    <a class="back-link" href="projects.html">&larr; Back to projects</a>
+    <!-- ===== Learned ===== -->
+    <section class="board closing">
+      <div class="c-full">
+        <h2 class="board-title">Learned</h2>
+        <ul class="did-list two-col">
+          <li>A rough prototype settles an argument faster than talking does. Two of us wanted different intakes, and building the simplest version that could prove or kill the idea was quicker than debating it.</li>
+          <li>The proof of concept was scrap-bin parts and basic geometry, but it answered the one thing that mattered, could the drum lift a weight up the ramp, before anyone spent time making it neat.</li>
+        </ul>
+      </div>
+      <a class="back-link c-full" href="projects.html">&larr; Back to projects</a>
+    </section>
 
   </main>
 

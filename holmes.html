@@ -11,210 +11,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <style>
-    /* ---------- Colour system (from the design note) ---------- */
-    :root {
-      --bg:        #0F1216;
-      --panel:     #171B21;
-      --hairline:  #2A2F37;
-      --text:      #E8EAED;
-      --muted:     #9BA1A9;
-      --navy:      #1F3864;
-      --accent:    #E0A24A;
-      --maxw: 1200px;
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Hanken Grotesk", sans-serif;
-      font-weight: 400;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
-
-    /* ---------- Top bar (shared on every page) ---------- */
-    .topbar { border-bottom: 1px solid var(--hairline); }
-    .topbar-inner {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 22px 32px;
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .wordmark {
-      font-family: "Archivo", sans-serif;
-      font-weight: 700;
-      font-size: 18px;
-      letter-spacing: 0.02em;
-    }
-    .nav {
-      display: flex;
-      gap: 28px;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .nav a:hover { color: var(--text); }
-    .nav a.active { color: var(--text); }
-
-    /* ---------- Detail page ---------- */
-    .detail {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 48px 32px 90px;
-    }
-
-    .detail-category {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 0 0 14px;
-    }
-    .detail-title {
-      font-family: "Archivo", sans-serif;
-      font-weight: 700;
-      font-size: clamp(32px, 5vw, 52px);
-      line-height: 1.05;
-      letter-spacing: -0.01em;
-      margin: 0 0 32px;
-    }
-
-    /* detail-page images: constrained to the text column width,
-       natural aspect ratio, capped at ~80vh, centred. No full-bleed. */
-    figure { margin: 0 0 40px; }
-    .lead-figure { margin: 0 0 40px; }
-    /* article images (hero and in-body): fill the column, whole image shown,
-       capped height, left-aligned to the column edge, no box */
-    .lead-img,
-    .seq-img {
-      display: block;
-      width: 100%;
-      height: auto;
-      max-height: 80vh;
-      object-fit: contain;
-      margin: 0;
-      background: none;
-      border: 0;
-    }
-    figcaption {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 14px;
-      letter-spacing: 0.02em;
-      line-height: 1.45;
-      color: var(--text);
-      max-width: 100%;
-      margin: 10px 0 0;
-    }
-
-    /* labelled placeholder for an image not yet identified */
-    .img-placeholder {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      max-width: 100%;
-      aspect-ratio: 4 / 3;
-      margin: 0;
-      padding: 24px;
-      border: 1px dashed var(--hairline);
-      background: var(--panel);
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-      line-height: 1.5;
-      color: var(--muted);
-    }
-
-    /* standfirst */
-    .standfirst {
-      font-size: clamp(18px, 2vw, 21px);
-      line-height: 1.55;
-      color: var(--text);
-      max-width: 100%;
-      margin: 0 0 44px;
-    }
-
-    /* section label, mono */
-    .section-label {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin: 0 0 18px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--hairline);
-      max-width: 100%;
-    }
-
-    /* what I did / section list */
-    .did-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 44px;
-      max-width: 100%;
-    }
-    .did-list li {
-      position: relative;
-      padding-left: 22px;
-      margin-bottom: 16px;
-      font-size: 16.5px;
-      line-height: 1.55;
-      color: var(--text);
-    }
-    .did-list li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 11px;
-      width: 7px;
-      height: 1px;
-      background: var(--accent);
-    }
-
-    /* bold result line, skim anchor */
-    .result-line {
-      font-family: "Archivo", sans-serif;
-      font-weight: 600;
-      font-size: clamp(19px, 2.2vw, 23px);
-      line-height: 1.35;
-      color: var(--accent);
-      max-width: 100%;
-      margin: 0 0 44px;
-      padding: 22px 0 22px 22px;
-      border-left: 2px solid var(--accent);
-    }
-
-    /* learned paragraph */
-    .learned {
-      font-size: 16.5px;
-      line-height: 1.6;
-      color: var(--text);
-      max-width: 100%;
-      margin: 0 0 60px;
-    }
-
-    /* image sequence (image sizing is shared with the lead image above) */
-    .sequence { display: grid; gap: 36px; }
-
-    .back-link {
-      display: inline-block;
-      margin-top: 56px;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .back-link:hover { color: var(--accent); }
-  </style>
-
+  <link rel="stylesheet" href="boards.css">
   <link rel="stylesheet" href="motion.css">
   <script src="motion.js" defer></script>
+  <script src="boards.js" defer></script>
 </head>
 <body>
 
@@ -230,89 +30,97 @@
     </div>
   </header>
 
-  <main class="detail">
+  <main class="page">
 
-    <p class="detail-category">R&amp;D / Test Engineering</p>
-    <h1 class="detail-title">Marine Snapback Research &amp; Design</h1>
+    <!-- ===== Hero ===== -->
+    <section class="board hero">
+      <div class="c1-6">
+        <p class="detail-category">R&amp;D / Test Engineering</p>
+        <h1 class="detail-title">Marine Snapback Research &amp; Design</h1>
+        <p class="standfirst">My main project during an R&amp;D internship at Holmes Solutions. Mooring lines under tension can part and recoil violently, and how sharply a line bends over a fairlead or bollard, its D/d ratio, has a large effect on how much load it can really carry.</p>
+        <dl class="facts">
+          <div><dt>Brief</dt><dd>Upgrade the snapback test apparatus to test ropes at more realistic bend geometries</dd></div>
+          <div><dt>Guidance</dt><dd>Target geometry set in line with OCIMF MEG-4</dd></div>
+          <div><dt>Status</dt><dd>Designed, fabricated and installed; first round of full-scale testing run</dd></div>
+          <div><dt>Output</dt><dd>Co-author on the resulting technical paper, presented August 2026</dd></div>
+        </dl>
+      </div>
+      <figure class="c7-12 hero-media">
+        <img class="shot" src="images/web/holmes1.jpg" width="1216" height="1022" alt="Mooring snapback test with a loaded line recoiling at high speed">
+        <figcaption>Mooring snapback test. When a loaded line parts, the ends recoil at high speed. This is the hazard the apparatus exists to study and contain.</figcaption>
+      </figure>
+    </section>
 
-    <!-- Standfirst -->
-    <p class="standfirst">My main project during an R&amp;D internship at Holmes Solutions, a Christchurch engineering consultancy. Mooring lines under tension can part and recoil violently, and how sharply a line bends over a fairlead or bollard, its D/d ratio, has a large effect on how much load it can really carry. I investigated that effect and designed an upgrade to the snapback test apparatus so it could test ropes at more realistic and safer bend geometries.</p>
+    <!-- ===== 01 Research ===== -->
+    <section class="board">
+      <div class="c-full">
+        <p class="board-num">01</p>
+        <h2 class="board-title">Research</h2>
+        <ul class="did-list two-col">
+          <li>Reviewed published research and industry guidance on how the D/d ratio affects mooring rope strength, efficiency and fatigue life, and how it ties into snapback risk.</li>
+          <li>Analysed previous in-house test data and compared the measured rope behaviour against published bending-efficiency theory and the capstan friction relationship.</li>
+          <li>Found that the bend geometries common in service can pull rope strength well below the idealised predictions, and identified friction across the bollard as a parameter that is not yet fully understood and worth investigating further.</li>
+          <li>Set a target geometry in line with OCIMF MEG-4 guidance, and authored a research summary that defined the engineering problem, performance targets and constraints for the apparatus upgrade.</li>
+        </ul>
+      </div>
+    </section>
 
-    <!-- Lead image -->
-    <figure class="lead-figure">
-      <img class="lead-img" src="images/holmes1.png" alt="Mooring snapback test with a loaded line recoiling at high speed">
-      <figcaption>Mooring snapback test. When a loaded line parts, the ends recoil at high speed. This is the hazard the test apparatus exists to study and contain.</figcaption>
-    </figure>
+    <!-- ===== 02 Design and verification ===== -->
+    <section class="board">
+      <div class="c1-4 mid">
+        <p class="board-num">02</p>
+        <h2 class="board-title">Design and verification</h2>
+        <ul class="did-list">
+          <li>Assessed the existing apparatus and defined its load constraints, then flagged a non-conservative capacity check on the revised load case with my own calculations and escalated it for structural review, rather than assuming the existing foundation would carry the new loads.</li>
+          <li>Carried the capstan friction finding through into the design, using free-body analysis to account for the tension imbalance across the bollard rather than assuming the load was symmetric.</li>
+          <li>Verified with hand calculations (bolt shear, bearing stress, preload loss, plate bending) to a comfortable margin, and used SolidWorks FEA to compare iterations and find stress concentrations. I picked up the FEA workflow on the job.</li>
+          <li>Produced a staged construction and installation plan. All designs and calculations were reviewed and signed off by senior engineers.</li>
+        </ul>
+      </div>
+      <figure class="c5-12" style="width: 78%">
+        <img class="shot" style="--ar: 1.046" src="images/Screenshot%202026-06-26%20125144.png" width="1308" height="1250" loading="lazy" decoding="async" alt="The interchangeable sleeve assembly modelled in SolidWorks">
+        <figcaption>The interchangeable sleeve assembly in SolidWorks. Bolting onto the existing base lets a range of bend geometries be tested on the same apparatus, and was chosen for ease of manufacture and maintenance.</figcaption>
+      </figure>
+    </section>
 
-    <!-- Section 1: Research -->
-    <p class="section-label">Research</p>
-    <ul class="did-list">
-      <li>Reviewed published research and industry guidance on how the D/d ratio affects mooring rope strength, efficiency and fatigue life, and how it ties into snapback risk.</li>
-      <li>Analysed previous in-house test data and compared the measured rope behaviour against published bending-efficiency theory and the capstan friction relationship.</li>
-      <li>Found that the bend geometries common in service can pull rope strength well below the idealised predictions, and identified friction across the bollard as a parameter that is not yet fully understood and worth investigating further.</li>
-      <li>Set a target geometry in line with OCIMF MEG-4 guidance, and authored a research summary that defined the engineering problem, performance targets and constraints for the apparatus upgrade.</li>
-    </ul>
+    <!-- ===== 03 Fabrication and install ===== -->
+    <section class="board">
+      <div class="c1-4 mid">
+        <p class="board-num">03</p>
+        <h2 class="board-title">Fabrication and install</h2>
+        <ul class="did-list">
+          <li>Supported fabrication of the sleeve and prepared the weld joint. The structural weld joining the sleeve to the bollard was completed by a certified welder.</li>
+          <li>Broke out the tarmac around the base to clear the footprint for the install.</li>
+        </ul>
+        <p class="result-line">Took the upgrade from research and problem definition through concept, verification and drawings to fabrication and install. First round of full-scale testing has since been run.</p>
+      </div>
+      <div class="c5-12 jrow">
+        <figure style="--ar: 1.333">
+          <img class="shot" src="images/web/IMG_1123.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Close-up of the ground weld bevel on the orange bollard flange">
+          <figcaption>Grinding the weld bevel on the existing bollard flange by hand to prepare the joint.</figcaption>
+        </figure>
+        <figure style="--ar: 0.75">
+          <img class="shot" src="images/web/IMG_1118.jpg" width="1200" height="1600" loading="lazy" decoding="async" alt="Person in an orange hi-vis vest using a red breaker on tarmac around the base">
+          <figcaption>Breaking out the tarmac during site preparation.</figcaption>
+        </figure>
+        <figure style="--ar: 1.331">
+          <img class="shot" src="images/holmes2.jpg" width="398" height="299" loading="lazy" decoding="async" alt="The fabricated sleeve halves with mounting plate on the orange base plate">
+          <figcaption>The completed sleeve installed, ready for full-scale testing.</figcaption>
+        </figure>
+      </div>
+    </section>
 
-    <!-- Section 2: Design and verification -->
-    <p class="section-label">Design and verification</p>
-    <ul class="did-list">
-      <li>Assessed the existing apparatus and defined its load constraints, then flagged a non-conservative capacity check on the revised load case with my own calculations and escalated it for structural review, rather than assuming the existing foundation would carry the new loads.</li>
-      <li>Proposed and developed an interchangeable bollard-sleeve concept that bolts onto the existing structure, chosen for ease of manufacture and maintenance and so a range of bend geometries can be tested on the same base.</li>
-    </ul>
-
-    <!-- Image: CAD render of the sleeve assembly -->
-    <figure>
-      <img class="seq-img" src="images/Screenshot%202026-06-26%20125144.png" alt="The interchangeable sleeve assembly modelled in SolidWorks">
-      <figcaption>The interchangeable sleeve assembly modelled in SolidWorks. Bolting onto the existing base lets a range of bend geometries be tested on the same apparatus.</figcaption>
-    </figure>
-
-    <ul class="did-list">
-      <li>Carried the capstan friction finding from the research through into the design, using free-body analysis to account for the tension imbalance across the bollard rather than assuming the load was symmetric.</li>
-      <li>Verified the concept with hand calculations (bolt shear, bearing stress, preload loss, plate bending) as structured safety checks to a comfortable margin, and used SolidWorks FEA to compare design iterations and identify stress concentrations before detailed verification. I picked up the FEA workflow on the job.</li>
-      <li>Produced a staged construction and installation plan.</li>
-      <li>All designs and calculations were reviewed and signed off by senior engineers.</li>
-    </ul>
-
-    <!-- Section 3: Fabrication and install -->
-    <p class="section-label">Fabrication and install</p>
-    <ul class="did-list">
-      <li>Supported fabrication of the sleeve, and ground the weld bevel on the existing bollard flange by hand to prepare the mating surface.</li>
-    </ul>
-
-    <!-- Image: ground weld bevel -->
-    <figure>
-      <img class="seq-img" src="images/IMG_1123.jpeg" alt="Close-up of the ground weld bevel on the orange bollard flange">
-      <figcaption>Grinding the weld bevel on the existing bollard flange to prepare the joint.</figcaption>
-    </figure>
-
-    <ul class="did-list">
-      <li>Prepared the weld joint and surrounding surfaces; the structural weld joining the sleeve to the bollard was completed by a certified welder.</li>
-      <li>Broke out the tarmac around the base with a breaker to clear the footprint for the install.</li>
-    </ul>
-
-    <!-- Image: breaking out the tarmac -->
-    <figure>
-      <img class="seq-img" src="images/IMG_1118.jpeg" alt="Person in an orange hi-vis vest using a red breaker on tarmac around the base">
-      <figcaption>Breaking out the tarmac around the base during site preparation for the install.</figcaption>
-    </figure>
-
-    <!-- Image: the completed sleeve installed -->
-    <figure>
-      <img class="seq-img" src="images/holmes2.jpg" alt="The fabricated sleeve halves with mounting plate on the orange base plate">
-      <figcaption>The completed sleeve installed on the existing base, ready for full-scale testing.</figcaption>
-    </figure>
-
-    <!-- Result line -->
-    <p class="result-line">Took the upgrade from research and problem definition through concept, verification and drawings to fabrication and install. First round of full-scale testing has since been run. I am a co-author on the resulting technical paper, to be presented in August 2026.</p>
-
-    <!-- Learned -->
-    <p class="section-label">Learned</p>
-    <ul class="did-list">
-      <li>Structural verification in industry is about proving a comfortable safety margin on the upgrade, not chasing an exact number. On a ground-based rig you can buy that margin with steel, which does not transfer where mass or cost binds.</li>
-      <li>I learned to lock in build decisions earlier. I spent too long refining the design and missed the build stage I wanted to oversee.</li>
-    </ul>
-
-    <a class="back-link" href="projects.html">&larr; Back to projects</a>
+    <!-- ===== Learned ===== -->
+    <section class="board closing">
+      <div class="c-full">
+        <h2 class="board-title">Learned</h2>
+        <ul class="did-list two-col">
+          <li>Structural verification in industry is about proving a comfortable safety margin on the upgrade, not chasing an exact number. On a ground-based rig you can buy that margin with steel, which does not transfer where mass or cost binds.</li>
+          <li>I learned to lock in build decisions earlier. I spent too long refining the design and missed the build stage I wanted to oversee.</li>
+        </ul>
+      </div>
+      <a class="back-link c-full" href="projects.html">&larr; Back to projects</a>
+    </section>
 
   </main>
 

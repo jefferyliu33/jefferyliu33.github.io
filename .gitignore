@@ -4,8 +4,16 @@ CLAUDE.md
 # Archived old homepage, not for publishing
 index_OLD.html
 
+# Pre-redesign backups of the project pages, and the board-layout drafts
+# they were built from. Kept locally, not published.
+*-old.html
+*-v2.html
+
 # Raw video source; the site uses the converted images/cnc-motion.mp4
 images/IMG_9610 (1).mov
+
+# Raw video source for the TTMS track-run clip
+images/IMG_3181.MOV
 
 # OS / sync cruft
 Thumbs.db

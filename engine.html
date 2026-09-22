@@ -11,192 +11,10 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=Hanken+Grotesk:wght@400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-  <style>
-    /* ---------- Colour system (from the design note) ---------- */
-    :root {
-      --bg:        #0F1216;
-      --panel:     #171B21;
-      --hairline:  #2A2F37;
-      --text:      #E8EAED;
-      --muted:     #9BA1A9;
-      --navy:      #1F3864;
-      --accent:    #E0A24A;
-      --maxw: 1200px;
-    }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; }
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: "Hanken Grotesk", sans-serif;
-      font-weight: 400;
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: inherit; text-decoration: none; }
-
-    /* ---------- Top bar (shared on every page) ---------- */
-    .topbar { border-bottom: 1px solid var(--hairline); }
-    .topbar-inner {
-      max-width: var(--maxw);
-      margin: 0 auto;
-      padding: 22px 32px;
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 24px;
-    }
-    .wordmark {
-      font-family: "Archivo", sans-serif;
-      font-weight: 700;
-      font-size: 18px;
-      letter-spacing: 0.02em;
-    }
-    .nav {
-      display: flex;
-      gap: 28px;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .nav a:hover { color: var(--text); }
-    .nav a.active { color: var(--text); }
-
-    /* ---------- Detail page ---------- */
-    .detail {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 48px 32px 90px;
-    }
-
-    .detail-category {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 0 0 14px;
-    }
-    .detail-title {
-      font-family: "Archivo", sans-serif;
-      font-weight: 700;
-      font-size: clamp(32px, 5vw, 52px);
-      line-height: 1.05;
-      letter-spacing: -0.01em;
-      margin: 0 0 32px;
-    }
-
-    /* detail-page images: constrained to the text column width,
-       natural aspect ratio, capped at ~70vh, centred. No full-bleed. */
-    figure { margin: 0 0 40px; }
-    .lead-figure { margin: 0 0 40px; }
-    /* article images (hero and in-body): fill the column, whole image shown,
-       capped height, left-aligned to the column edge, no box */
-    .lead-img,
-    .seq-img {
-      display: block;
-      width: 100%;
-      height: auto;
-      max-height: 80vh;
-      object-fit: contain;
-      margin: 0;
-      background: none;
-      border: 0;
-    }
-    figcaption {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 14px;
-      letter-spacing: 0.02em;
-      line-height: 1.45;
-      color: var(--text);
-      max-width: 100%;
-      margin: 10px 0 0;
-    }
-
-    /* standfirst */
-    .standfirst {
-      font-size: clamp(18px, 2vw, 21px);
-      line-height: 1.55;
-      color: var(--text);
-      max-width: 100%;
-      margin: 0 0 44px;
-    }
-
-    /* section label, mono */
-    .section-label {
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 12px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin: 0 0 18px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--hairline);
-      max-width: 100%;
-    }
-
-    /* what I did list */
-    .did-list {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 44px;
-      max-width: 100%;
-    }
-    .did-list li {
-      position: relative;
-      padding-left: 22px;
-      margin-bottom: 16px;
-      font-size: 16.5px;
-      line-height: 1.55;
-      color: var(--text);
-    }
-    .did-list li::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 11px;
-      width: 7px;
-      height: 1px;
-      background: var(--accent);
-    }
-
-    /* bold result line, skim anchor */
-    .result-line {
-      font-family: "Archivo", sans-serif;
-      font-weight: 600;
-      font-size: clamp(19px, 2.2vw, 23px);
-      line-height: 1.35;
-      color: var(--accent);
-      max-width: 100%;
-      margin: 0 0 44px;
-      padding: 22px 0 22px 22px;
-      border-left: 2px solid var(--accent);
-    }
-
-    /* learned paragraph */
-    .learned {
-      font-size: 16.5px;
-      line-height: 1.6;
-      color: var(--text);
-      max-width: 100%;
-      margin: 0 0 60px;
-    }
-
-    /* image sequence (image sizing is shared with the lead image above) */
-    .sequence { display: grid; gap: 36px; }
-
-    .back-link {
-      display: inline-block;
-      margin-top: 56px;
-      font-family: "IBM Plex Mono", monospace;
-      font-size: 13px;
-      color: var(--muted);
-    }
-    .back-link:hover { color: var(--accent); }
-  </style>
-
+  <link rel="stylesheet" href="boards.css">
   <link rel="stylesheet" href="motion.css">
   <script src="motion.js" defer></script>
+  <script src="boards.js" defer></script>
 </head>
 <body>
 
@@ -212,82 +30,102 @@
     </div>
   </header>
 
-  <main class="detail">
+  <main class="page">
 
-    <p class="detail-category">Motorsport / Automotive</p>
-    <h1 class="detail-title">Turbocharged Engine Build</h1>
+    <!-- ===== Hero ===== -->
+    <section class="board hero">
+      <div class="c1-6">
+        <p class="detail-category">Motorsport / Automotive</p>
+        <h1 class="detail-title">Turbocharged Engine Build</h1>
+        <p class="standfirst">A 2006 Subaru Legacy GT I rebuilt after the original engine failed. I diagnosed the failure, specced the build, assembled it, and got it running and back into daily use.</p>
+        <dl class="facts">
+          <div><dt>Brief</dt><dd>Stronger and more reliable than stock under sustained boost, without chasing a number the hardware could not live with</dd></div>
+          <div><dt>Target</dt><dd>~280 to 300 whp, up from ~210 to 220 stock, confirmed feasible with the tuner before parts were bought</dd></div>
+          <div><dt>Status</dt><dd>Running and back in daily use on a base map; final tune still to come</dd></div>
+        </dl>
+      </div>
+      <figure class="c7-12 hero-media">
+        <img class="shot" src="images/web/engine5.jpg" width="1600" height="1341" alt="The rebuilt engine on the stand with the timing gear exposed">
+        <figcaption>Built engine on the stand, timing and exhaust components fitted.</figcaption>
+      </figure>
+    </section>
 
-    <!-- Standfirst -->
-    <p class="standfirst">A 2006 Subaru Legacy GT I rebuilt after the original engine failed. I diagnosed the failure, specced the build, assembled it, and got it running and back into daily use. The brief was simple: stronger and more reliable than stock under sustained boost, without chasing a number the hardware could not live with.</p>
+    <!-- ===== 01 Diagnosis and spec ===== -->
+    <section class="board">
+      <div class="c1-4 mid">
+        <p class="board-num">01</p>
+        <h2 class="board-title">Diagnosis and spec</h2>
+        <ul class="did-list">
+          <li>Diagnosed an internal failure from running symptoms and a compression test, then chose to keep the car and rebuild it stronger than stock rather than return it to standard.</li>
+          <li>Specced it for reliability under sustained boost: a stronger STI block in place of the original, machined along with the heads, rotating assembly kept largely stock with targeted upgrades (ARP studs, upgraded bearings, rings and valve springs), and reworked cooling and oiling.</li>
+          <li>Planned the full parts list up front so machine-shop work and long-lead parts were ordered early rather than mid-assembly.</li>
+        </ul>
+      </div>
+      <div class="c5-12 jrow">
+        <figure style="--ar: 1.333">
+          <img class="shot" src="images/web/engine1.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Bare short block case halves during the rebuild">
+          <figcaption>Bare short block case halves.</figcaption>
+        </figure>
+        <figure style="--ar: 0.75">
+          <img class="shot" src="images/web/IMG_1716.jpg" width="1200" height="1600" loading="lazy" decoding="async" alt="Crankshaft with connecting rods attached on the workbench">
+          <figcaption>Crank and connecting rods.</figcaption>
+        </figure>
+      </div>
+    </section>
 
-    <!-- Lead image -->
-    <figure class="lead-figure">
-      <img class="lead-img" src="images/engine5.jpeg" alt="The rebuilt engine on the stand with the timing gear exposed">
-      <figcaption>Built engine on the stand with timing and exhaust components fitted.</figcaption>
-    </figure>
+    <!-- ===== 02 Build ===== -->
+    <section class="board">
+      <div class="c1-4 mid">
+        <p class="board-num">02</p>
+        <h2 class="board-title">Build</h2>
+        <ul class="did-list">
+          <li>Assembled the engine myself.</li>
+          <li>Repaired a stripped thread in the block at the timing idler pulley mount, drilling and tapping it for a thread insert so the bolt holds properly under load.</li>
+        </ul>
+      </div>
+      <div class="c5-12 jrow">
+        <figure style="--ar: 0.75">
+          <img class="shot" src="images/web/IMG_1820.jpg" width="1200" height="1600" loading="lazy" decoding="async" alt="Engine block on a red stand with a T-handle tap wrench fitted into a bolt hole">
+          <figcaption>Tapping the block for a thread insert at the timing idler pulley mount.</figcaption>
+        </figure>
+        <figure style="--ar: 0.75">
+          <img class="shot" src="images/engine3.jpg" width="2475" height="3300" loading="lazy" decoding="async" alt="Short block assembled with pistons and head studs in">
+          <figcaption>Short block assembled, pistons and head studs in.</figcaption>
+        </figure>
+        <figure style="--ar: 0.75">
+          <img class="shot" src="images/web/engine2.jpg" width="1200" height="1600" loading="lazy" decoding="async" alt="Built engine on the stand with stainless headers fitted">
+          <figcaption>Underside of the built engine.</figcaption>
+        </figure>
+      </div>
+    </section>
 
-    <!-- What I did -->
-    <p class="section-label">What I did</p>
-    <ul class="did-list">
-      <li>Diagnosed an internal failure from running symptoms and a compression test, then chose to keep the car and rebuild it stronger than stock rather than return it to standard.</li>
-      <li>Set a target of ~280 to 300 whp, up from ~210 to 220 stock, and confirmed with the tuner that it was feasible on the hardware before committing parts.</li>
-      <li>Specced and built for reliability under sustained boost: a stronger STI block in place of the original, machined along with the heads, rotating assembly kept largely stock with targeted reliability upgrades (ARP studs, upgraded bearings, rings and valve springs), and reworked cooling and oiling.</li>
-    </ul>
+    <!-- ===== 03 Running ===== -->
+    <section class="board">
+      <div class="c1-4 mid">
+        <p class="board-num">03</p>
+        <h2 class="board-title">Running</h2>
+        <ul class="did-list">
+          <li>Running and back in daily use on a base map, with datalogging set up so the tuner can refine the map remotely off my logs. Final tune to target, plus anti-lag and flat-foot shifting calibration, still to come.</li>
+        </ul>
+        <p class="result-line">Built, running and back in daily use. Tuning to the tuner-confirmed ~280 to 300 whp target is the next step, not yet done.</p>
+      </div>
+      <figure class="c5-12" style="width: 74%">
+        <img class="shot" style="--ar: 1.333" src="images/web/engine4.jpg" width="1600" height="1200" loading="lazy" decoding="async" alt="Datalogging in the car">
+        <figcaption>Datalogging in the car, for the tuner to work from.</figcaption>
+      </figure>
+    </section>
 
-    <!-- Image: crank and connecting rods -->
-    <figure>
-      <img class="seq-img" src="images/IMG_1716.jpeg" alt="Crankshaft with connecting rods attached on the workbench">
-      <figcaption>Crank and connecting rods during the rebuild.</figcaption>
-    </figure>
-
-    <ul class="did-list">
-      <li>Repaired a stripped thread in the block at the timing idler pulley mount, drilling and tapping it for a thread insert so the bolt holds properly under load.</li>
-    </ul>
-
-    <!-- Image: tapping the block for a thread insert -->
-    <figure>
-      <img class="seq-img" src="images/IMG_1820.jpeg" alt="Engine block on a red stand with a T-handle tap wrench fitted into a bolt hole">
-      <figcaption>Tapping the block for a thread insert at the timing idler pulley mount.</figcaption>
-    </figure>
-
-    <ul class="did-list">
-      <li>Planned the full parts list up front so machine-shop work and long-lead parts were ordered early rather than mid-assembly.</li>
-    </ul>
-
-    <!-- Images: the build -->
-    <figure>
-      <img class="seq-img" src="images/engine1.jpg" alt="Block and heads during the rebuild">
-      <figcaption>Bare short block case halves.</figcaption>
-    </figure>
-    <figure>
-      <img class="seq-img" src="images/engine3.jpg" alt="Short block assembled with pistons and head studs in">
-      <figcaption>Short block assembled, pistons and head studs in.</figcaption>
-    </figure>
-
-    <!-- Image: built engine, headers fitted (former hero) -->
-    <figure>
-      <img class="seq-img" src="images/engine2.jpg" alt="Built engine on the stand with stainless headers fitted">
-      <figcaption>Underside of the built engine.</figcaption>
-    </figure>
-
-    <ul class="did-list">
-      <li>Running and back in daily use on a base map. Datalogging set up so the tuner can refine the map remotely off my logs. Final tune to target, plus anti-lag and flat-foot shifting calibration, still to come.</li>
-    </ul>
-
-    <!-- Image: datalogging -->
-    <figure>
-      <img class="seq-img" src="images/engine4.jpg" alt="Datalogging in the car">
-      <figcaption>Datalogging in the car.</figcaption>
-    </figure>
-
-    <!-- Result line -->
-    <p class="result-line">Built, running and back in daily use. Tuning to the tuner-confirmed ~280 to 300 whp target is the next step, not yet done.</p>
-
-    <!-- Learned -->
-    <p class="section-label">Learned</p>
-    <p class="learned">Learned to plan the build and parts list up front, and to spend on quality where it actually matters rather than everywhere. The reliability upgrades and the machine-shop precision work were worth the money; performance that holds up over time came from there, not from chasing peak power.</p>
-
-    <a class="back-link" href="projects.html">&larr; Back to projects</a>
+    <!-- ===== Learned ===== -->
+    <section class="board closing">
+      <div class="c-full">
+        <h2 class="board-title">Learned</h2>
+        <ul class="did-list two-col">
+          <li>Plan the build and the parts list up front, and spend on quality where it actually matters rather than everywhere.</li>
+          <li>The reliability upgrades and the machine-shop precision work were worth the money. Performance that holds up over time came from there, not from chasing peak power.</li>
+        </ul>
+      </div>
+      <a class="back-link c-full" href="projects.html">&larr; Back to projects</a>
+    </section>
 
   </main>
 
