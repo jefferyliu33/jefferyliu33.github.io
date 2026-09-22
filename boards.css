@@ -1,0 +1,435 @@
+/* Shared styles for the board-layout project pages. */
+/* ---------- Colour system (from the design note) ---------- */
+    :root {
+      --bg:        #0F1216;
+      --panel:     #171B21;
+      --hairline:  #2A2F37;
+      --text:      #E8EAED;
+      --muted:     #9BA1A9;
+      --navy:      #1F3864;
+      --accent:    #E0A24A;
+      /* Fluid: fills a wide desktop instead of sitting in a narrow middle band.
+         Line length stays readable because text blocks cap their own width. */
+      --maxw: min(1680px, 94vw);
+      --gutter: 48px;
+      --gap: 16px;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Hanken Grotesk", sans-serif;
+      font-weight: 400;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+
+    /* ---------- Top bar (shared on every page) ---------- */
+    .topbar { border-bottom: 1px solid var(--hairline); }
+    .topbar-inner {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 22px var(--gutter);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .wordmark {
+      font-family: "Archivo", sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      letter-spacing: 0.02em;
+      white-space: nowrap;
+    }
+    .nav {
+      display: flex;
+      gap: 28px;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .nav a:hover { color: var(--text); }
+    .nav a.active { color: var(--text); }
+
+    /* ---------- Board layout ----------
+       Wide 12-column canvas. Each project phase is one board: an anchor
+       image, smaller supporting images around it, and a few words.
+       Photos may be cropped for framing (never cutting into the subject);
+       diagrams, schematics and screenshots are always shown whole.
+       Every image opens full size in the lightbox. */
+    .page {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 0 var(--gutter) 90px;
+    }
+    .board {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      column-gap: 24px;
+      row-gap: var(--gap);
+      align-items: start;
+      padding: 56px 0;
+      border-top: 1px solid var(--hairline);
+    }
+    .c1-3   { grid-column: 1 / span 3; }
+    .c1-4   { grid-column: 1 / span 4; }
+    .c1-5   { grid-column: 1 / span 5; }
+    .c6-9   { grid-column: 6 / span 4; }
+    .c10-12 { grid-column: 10 / -1; }
+    .c4-12  { grid-column: 4 / -1; }
+    .c1-6   { grid-column: 1 / span 6; }
+    .c1-7   { grid-column: 1 / span 7; }
+    .c5-12  { grid-column: 5 / -1; }
+    .c7-12  { grid-column: 7 / -1; }
+    .c8-12  { grid-column: 8 / -1; }
+    .c-full { grid-column: 1 / -1; }
+    .stack  { display: flex; flex-direction: column; gap: var(--gap); }
+    .drop   { margin-top: var(--drop, 0); }
+    /* centres a short text column against a much taller image beside it,
+       so the leftover space sits on both sides instead of all underneath */
+    .mid    { align-self: center; }
+
+    /* Justified image row: flex-grow = aspect ratio, so every image in the
+       row lands at the same height with none cropped. Set --w lower than
+       --ar to make one image deliberately smaller (paired with .drop for
+       a subtle offset). */
+    .jrow {
+      display: flex;
+      gap: var(--gap);
+      align-items: flex-start;
+    }
+    .jrow > figure {
+      flex: var(--w, var(--ar)) 1 0;
+      min-width: 0;
+    }
+    .jrow img, .solo img, .jrow video {
+      aspect-ratio: var(--ar);
+      object-fit: cover;
+      object-position: var(--pos, 50% 50%);
+    }
+    .clip {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #000;
+    }
+
+    /* ---------- Hero ---------- */
+    .hero {
+      border-top: 0;
+      padding: 48px 0 56px;
+      align-items: center;
+    }
+    /* hero image: as tall as the viewport comfortably allows, right-aligned */
+    .hero-media img {
+      max-height: 74vh;
+      width: auto;
+      max-width: 100%;
+      margin-left: auto;
+    }
+    .hero-media figcaption { margin-left: auto; text-align: right; }
+    .detail-category {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 0 0 14px;
+    }
+    .detail-title {
+      font-family: "Archivo", sans-serif;
+      font-weight: 700;
+      font-size: clamp(34px, 4.4vw, 60px);
+      line-height: 1.02;
+      letter-spacing: -0.01em;
+      margin: 0 0 24px;
+    }
+    .standfirst {
+      font-size: clamp(18px, 1.6vw, 21px);
+      line-height: 1.55;
+      max-width: 52ch;
+      margin: 0 0 32px;
+    }
+    .facts { margin: 0; max-width: 560px; }
+    .facts div {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: 18px;
+      padding: 11px 0;
+      border-top: 1px solid var(--hairline);
+      align-items: baseline;
+    }
+    .facts div:last-child { border-bottom: 1px solid var(--hairline); }
+    .facts dt {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .facts dd { margin: 0; font-size: 15.5px; }
+
+    /* ---------- Board text ---------- */
+    .board-num {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 8px;
+    }
+    .board-title {
+      font-family: "Archivo", sans-serif;
+      font-weight: 700;
+      font-size: clamp(26px, 2.6vw, 36px);
+      line-height: 1.1;
+      margin: 0 0 18px;
+    }
+    .did-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      max-width: 46ch;
+    }
+    .did-list li {
+      position: relative;
+      padding-left: 22px;
+      margin-bottom: 12px;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+    .did-list li:last-child { margin-bottom: 0; }
+    .did-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 11px;
+      width: 7px;
+      height: 1px;
+      background: var(--accent);
+    }
+    .did-list.two-col { columns: 2; column-gap: 48px; max-width: none; }
+    .did-list.two-col li { break-inside: avoid; }
+
+    /* ---------- Figures ---------- */
+    figure { margin: 0; }
+    .shot {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: none;
+      border: 0;
+      cursor: zoom-in;
+    }
+    .shot:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+    figcaption {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12.5px;
+      letter-spacing: 0.01em;
+      line-height: 1.5;
+      color: var(--muted);
+      margin: 8px 0 0;
+      max-width: 52ch;
+    }
+
+    /* ---------- Architecture diagram (inline SVG, page palette) ---------- */
+    .arch-scroll { overflow-x: auto; }
+    .arch { display: block; width: 100%; height: auto; }
+    /* below tablet width the labels would shrink past legibility,
+       so the diagram keeps its size and the wrapper scrolls sideways */
+    @media (max-width: 900px) {
+      .arch { min-width: 720px; }
+    }
+    .arch .a-box rect { fill: var(--panel); stroke: var(--hairline); stroke-width: 1; }
+    .arch .a-key rect { fill: #16233D; stroke: #2C4272; }
+    .arch .a-name {
+      font-family: "Archivo", sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      fill: var(--text);
+      text-anchor: middle;
+    }
+    .arch .a-sub {
+      font-family: "Hanken Grotesk", sans-serif;
+      font-size: 13px;
+      fill: var(--muted);
+      text-anchor: middle;
+    }
+    .arch .a-left { text-anchor: start; }
+    .arch .a-stage {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      letter-spacing: 0.14em;
+      fill: var(--accent);
+    }
+    .arch .a-future { fill: var(--muted); }
+    .arch .a-note {
+      font-family: "Hanken Grotesk", sans-serif;
+      font-size: 13px;
+      fill: var(--muted);
+    }
+    .arch .a-tag {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 11.5px;
+      letter-spacing: 0.08em;
+      fill: var(--muted);
+      text-anchor: middle;
+    }
+    .arch .a-line { stroke: #6E757D; stroke-width: 1.5; fill: none; }
+    .arch .a-rule { stroke: var(--hairline); stroke-width: 1; }
+    .cap-label { color: var(--accent); margin-right: 6px; }
+    /* credit line for a third-party image, dimmer than the caption itself */
+    .credit { color: #6E757D; }
+
+    /* ---------- Result + learned ---------- */
+    .result-line {
+      font-family: "Archivo", sans-serif;
+      font-weight: 600;
+      font-size: clamp(19px, 1.8vw, 22px);
+      line-height: 1.35;
+      color: var(--accent);
+      margin: 24px 0 0;
+      padding: 16px 0 16px 20px;
+      border-left: 2px solid var(--accent);
+    }
+    /* small spec table: mono labels, hairline rows, current setting in amber */
+    .spec {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+    .spec caption {
+      caption-side: top;
+      text-align: left;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-bottom: 10px;
+    }
+    .spec th {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--muted);
+      text-align: left;
+      padding: 8px 12px 8px 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .spec td {
+      padding: 10px 12px 10px 0;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .spec tr.current td { color: var(--accent); font-weight: 500; }
+    .spec-goal { color: var(--muted); }
+    .spec-note {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12.5px;
+      line-height: 1.5;
+      color: var(--muted);
+      margin: 12px 0 0;
+      max-width: 52ch;
+    }
+
+    .board.closing { row-gap: 24px; }
+    .back-link {
+      display: inline-block;
+      margin-top: 0;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .back-link:hover { color: var(--accent); }
+
+    /* ---------- Lightbox ---------- */
+    .lightbox {
+      width: 100vw;
+      height: 100vh;
+      max-width: none;
+      max-height: none;
+      margin: 0;
+      padding: 56px 72px 40px;
+      border: 0;
+      background: rgba(10, 12, 15, 0.94);
+      color: var(--text);
+    }
+    .lightbox::backdrop { background: transparent; }
+    .lightbox[open] {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .lb-figure {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      max-width: 100%;
+      min-height: 0;
+    }
+    .lb-img {
+      display: block;
+      max-width: 100%;
+      max-height: calc(100vh - 170px);
+      width: auto;
+      height: auto;
+    }
+    .lb-cap {
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      color: var(--muted);
+      max-width: 80ch;
+      margin-top: 12px;
+    }
+    .lb-btn {
+      position: absolute;
+      background: none;
+      border: 0;
+      color: var(--muted);
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      padding: 10px 12px;
+    }
+    .lb-btn:hover, .lb-btn:focus-visible { color: var(--accent); }
+    .lb-close { top: 16px; right: 20px; }
+    .lb-prev  { left: 16px; top: 50%; transform: translateY(-50%); font-size: 20px; }
+    .lb-next  { right: 16px; top: 50%; transform: translateY(-50%); font-size: 20px; }
+    .lb-count {
+      position: absolute;
+      top: 24px;
+      left: 28px;
+      margin: 0;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+    @media (prefers-reduced-motion: no-preference) {
+      .lightbox[open] { animation: page-fade-in 150ms ease-out; }
+    }
+
+    /* ---------- Narrower screens ---------- */
+    @media (max-width: 1000px) {
+      :root { --gutter: 24px; }
+      .board { row-gap: 24px; padding: 44px 0; }
+      .board > * { grid-column: 1 / -1 !important; }
+      .did-list.two-col { columns: 1; }
+      .lightbox { padding: 56px 16px 24px; }
+      .lb-prev, .lb-next { top: auto; bottom: 12px; transform: none; }
+    }
+    @media (max-width: 640px) {
+      .topbar-inner { gap: 12px; }
+      .nav { gap: 12px; font-size: 12px; }
+      .jrow { flex-wrap: wrap; }
+      .jrow > figure { flex: 1 1 calc(50% - var(--gap)); }
+      .drop { margin-top: 0; }
+      .facts div { grid-template-columns: 1fr; gap: 4px; }
+    }
