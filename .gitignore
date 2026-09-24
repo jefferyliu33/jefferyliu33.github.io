@@ -15,6 +15,10 @@ images/IMG_9610 (1).mov
 # Raw video source for the TTMS track-run clip
 images/IMG_3181.MOV
 
+# Raw phone originals (HEIC/MOV) kept for re-processing; the site uses
+# the web-sized copies made from them
+images/src/
+
 # OS / sync cruft
 Thumbs.db
 desktop.ini
